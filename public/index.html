@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="
+        default-src 'self';
+        script-src 'self';
+        style-src 'unsafe-inline';
+      "
+    >
+
+    <meta
+      http-equiv="X-Content-Security-Policy"
+      content="
+        default-src 'self';
+        script-src 'self';
+        style-src 'unsafe-inline';
+      "
+    >
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    >
+
+    <!-- TODO: -->
+    <link
+      rel="icon"
+      href="./images/logo.png"
+    >
+
+    <title>Tugarin</title>
+
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: sans-serif;
+        color: white;
+        background-color: #333;
+      }
+
+      .canvas {
+        display: block;
+        width: 100vw;
+        height: 100vh;
+      }
+    </style>
+  </head>
+
+  <body>
+    <canvas class="canvas"></canvas>
+  </body>
+</html>
