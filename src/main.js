@@ -7,8 +7,6 @@ if (require('electron-squirrel-startup')) {
   app.quit();
 }
 
-const isServe = true;
-
 let mainWindow;
 
 const createWindow = () => {
@@ -28,7 +26,7 @@ const createWindow = () => {
   // @ts-ignore
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 
-  if (isServe) {
+  if (process.env.NODE_ENV === 'development') {
     mainWindow.webContents.openDevTools();
   }
 
