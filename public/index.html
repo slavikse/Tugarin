@@ -47,10 +47,31 @@
         width: 100vw;
         height: 100vh;
       }
+
+      .quit {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 30px;
+        height: 30px;
+        border: none;
+        line-height: 0.8;
+        color: white;
+        background-color: brown;
+        cursor: pointer;
+      }
+
+      .quit:focus {
+        outline: none;
+      }
     </style>
   </head>
 
   <body>
     <canvas class="canvas"></canvas>
+
+    <button class="quit">
+      x
+    </button>
   </body>
 </html>
