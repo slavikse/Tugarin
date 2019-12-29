@@ -1,7 +1,15 @@
 'use strict';
 
-const canvas = document.querySelector('.canvas');
-const ctx = canvas.getContext('2d');
+function canvas() {
+  const $canvas = document.querySelector('.canvas');
+  const { clientWidth, clientHeight } = document.documentElement;
+  $canvas.width = clientWidth;
+  $canvas.height = clientHeight;
 
-ctx.fillStyle = 'green';
-ctx.fillRect(0, 0, 150, 100);
+  const ctx = $canvas.getContext('2d');
+  ctx.imageSmoothingEnabled = false;
+
+  return ctx;
+}
+
+module.exports = canvas;
