@@ -2,21 +2,27 @@
 
 window.addEventListener('keydown', keydown, true);
 
-const keyCodeW = 87;
-const keyCodeA = 65;
-const keyCodeS = 83;
-const keyCodeD = 68;
-
-// TODO: общение с scene через события
 function keydown({ keyCode }) {
+  const keyCodeW = 87;
+  const keyCodeA = 65;
+  const keyCodeS = 83;
+  const keyCodeD = 68;
+
   if (keyCode === keyCodeW) {
-    // TODO: создавать событие о перемещении.
-    console.log('W');
+    createEvent('move-top');
   } else if (keyCode === keyCodeA) {
-    console.log('A');
+    createEvent('move-left');
   } else if (keyCode === keyCodeS) {
-    console.log('S');
+    createEvent('move-bottom');
   } else if (keyCode === keyCodeD) {
-    console.log('D');
+    createEvent('move-right');
   }
+}
+
+function createEvent(action) {
+  // type: human | ai
+  const type = { detail: { type: 'human' } };
+  const event = new CustomEvent(action, type);
+
+  window.dispatchEvent(event);
 }

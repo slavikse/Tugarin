@@ -4,11 +4,10 @@ import canvas from './canvas';
 import scene from './scene';
 import './control';
 
-function render() {
-  const ctx = canvas();
-  scene(ctx);
-}
-
+window.addEventListener('resize', render);
 render();
 
-window.addEventListener('resize', render);
+function render() {
+  const context = canvas();
+  scene(context);
+}
