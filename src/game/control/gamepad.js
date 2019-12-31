@@ -1,5 +1,3 @@
-'use strict';
-
 import { createEvent } from './utils';
 
 window.addEventListener('gamepadconnected', loop);

@@ -1,15 +1,13 @@
-'use strict';
-
 import { createEvent } from './utils';
 
 window.addEventListener('keydown', keydown);
 window.addEventListener('keyup', keyup);
 
-let isKeyNotPressed  = true;
+let isNotPressed  = true;
 
 function keydown({ keyCode }) {
-  if (isKeyNotPressed) {
-    isKeyNotPressed = false;
+  if (isNotPressed) {
+    isNotPressed = false;
   } else {
     return;
   }
@@ -31,5 +29,5 @@ function keydown({ keyCode }) {
 }
 
 function keyup() {
-  isKeyNotPressed = true;
+  isNotPressed = true;
 }

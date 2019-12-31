@@ -1,5 +1,3 @@
-'use strict';
-
 let ctx;
 
 const actors = {
@@ -53,16 +51,21 @@ export default function scene(context) {
 // TODO: проверка выхода за границы поля
 // с помощью стен. пересечение со стеной или игроком - конец игры.
 
-window.addEventListener('move-top', event => move(event, 'top'));
-window.addEventListener('move-left', event => move(event, 'left'));
-window.addEventListener('move-bottom', event => move(event, 'bottom'));
-window.addEventListener('move-right', event => move(event, 'right'));
+window.addEventListener('move-top', event => move(event, 'moveTop'));
+window.addEventListener('move-left', event => move(event, 'moveLeft'));
+window.addEventListener('move-bottom', event => move(event, 'moveBottom'));
+window.addEventListener('move-right', event => move(event, 'moveRight'));
 
-function move(event, type) {
+function setMovementSide(side) {
+}
+
+// TODO: выбор стороны, а змейка движется в эту сторону автоматически
+// let selectedSide = 'move-bottom';
+function move(event, side) {
   const actor = actors[event.detail.type];
 
   erase(actor);
-  calc(actor, type);
+  calc(actor, side);
   draw(actor);
 }
 
@@ -72,14 +75,14 @@ function erase(actor) {
 }
 
 const actions = {
-  top: ([x, y]) => ([x, y - step]),
-  right: ([x, y]) => ([x + step, y]),
-  bottom: ([x, y]) => ([x, y + step]),
-  left: ([x, y]) => ([x - step, y]),
+  moveTop: ([x, y]) => ([x, y - step]),
+  moveRight: ([x, y]) => ([x + step, y]),
+  moveBottom: ([x, y]) => ([x, y + step]),
+  moveLeft: ([x, y]) => ([x - step, y]),
 };
 
-function calc(actor, type) {
-  actor.position = actions[type](actor.position);
+function calc(actor, side) {
+  actor.position = actions[side](actor.position);
 }
 
 function draw(actor) {

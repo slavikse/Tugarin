@@ -1,13 +1,15 @@
 'use strict';
 
-const {
+import {
   BrowserWindow,
   screen,
   app,
   Menu,
-} = require('electron');
+} from 'electron';
 
-if (require('electron-squirrel-startup')) {
+import isHotReload from 'electron-squirrel-startup';
+
+if (isHotReload) {
   app.quit();
 }
 

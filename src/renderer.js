@@ -1,5 +1,3 @@
-'use strict';
-
 import { remote } from 'electron';
 import './game';
 // import './neuron';

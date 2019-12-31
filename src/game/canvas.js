@@ -1,5 +1,3 @@
-'use strict';
-
 export default function canvas() {
   const $canvas = document.querySelector('.canvas');
   const { clientWidth, clientHeight } = document.documentElement;

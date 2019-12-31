@@ -1,7 +1,6 @@
-'use strict';
-
 import canvas from './canvas';
-import scene from './scene';
+// TODO: пока так
+import scene from './scene/scene';
 import './control';
 
 window.addEventListener('resize', render);
