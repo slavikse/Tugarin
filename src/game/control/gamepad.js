@@ -2,31 +2,27 @@
 
 import { createEvent } from './utils';
 
-window.addEventListener('gamepadconnected', gamepadLoop);
-window.addEventListener('gamepaddisconnected', gamepadLoopStop);
+window.addEventListener('gamepadconnected', loop);
+window.addEventListener('gamepaddisconnected', loopStop);
 
-// move-top | move-right | move-bottom | move-left
-// TODO: выбор стороны, а змейка движется в эту сторону автоматически
-// let selectedSide = 'move-bottom';
+let loopId;
+let isPressed = false;
 
-let gamepadLoopId;
-let isGamepadPressed = false;
-
-function gamepadLoop() {
-  gamepadLoopId = requestAnimationFrame(gamepadLoop);
+function loop() {
+  loopId = requestAnimationFrame(loop);
   const [{ axes: [x, y] }] = navigator.getGamepads();
 
   if (
     x > -1 && x < 1
     && y > -1 && y < 1
   ) {
-    isGamepadPressed = false;
+    isPressed = false;
     return;
-  } else if (isGamepadPressed) {
+  } else if (isPressed) {
     return;
   }
 
-  isGamepadPressed = true;
+  isPressed = true;
 
   if (y === -1) {
     createEvent('move-top');
@@ -39,6 +35,6 @@ function gamepadLoop() {
   }
 }
 
-function gamepadLoopStop() {
-  cancelAnimationFrame(gamepadLoopId);
+function loopStop() {
+  cancelAnimationFrame(loopId);
 }
