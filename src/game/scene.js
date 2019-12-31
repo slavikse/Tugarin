@@ -13,7 +13,8 @@ const actors = {
   },
 };
 
-const size = [50, 50];
+const step = 20;
+const size = [step, step];
 
 // // TODO: много
 // {
@@ -39,6 +40,7 @@ const size = [50, 50];
 //   ]
 // };
 
+// TODO: расчертить сетку, чтибы было видно границы
 function scene(context) {
   ctx = context;
 
@@ -69,7 +71,6 @@ function erase(actor) {
   ctx.fillRect(...actor.position, ...size);
 }
 
-const step = 50;
 const actions = {
   top: ([x, y]) => ([x, y - step]),
   right: ([x, y]) => ([x + step, y]),
