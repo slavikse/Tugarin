@@ -41,7 +41,7 @@ const size = [step, step];
 // };
 
 // TODO: расчертить сетку, чтибы было видно границы
-function scene(context) {
+export default function scene(context) {
   ctx = context;
 
   Object.values(actors).forEach((actor) => {
@@ -86,5 +86,3 @@ function draw(actor) {
   ctx.fillStyle = actor.color;
   ctx.fillRect(...actor.position, ...size);
 }
-
-module.exports = scene;

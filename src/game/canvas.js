@@ -1,6 +1,6 @@
 'use strict';
 
-function canvas() {
+export default function canvas() {
   const $canvas = document.querySelector('.canvas');
   const { clientWidth, clientHeight } = document.documentElement;
   $canvas.width = clientWidth;
@@ -11,5 +11,3 @@ function canvas() {
 
   return ctx;
 }
-
-module.exports = canvas;
