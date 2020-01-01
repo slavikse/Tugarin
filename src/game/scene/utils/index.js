@@ -1,3 +1,3 @@
-import drawField from './drawField';
+import setting from './setting';
 
-export { drawField };
+export { setting };

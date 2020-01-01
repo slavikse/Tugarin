@@ -1,5 +1,5 @@
-import { drawField } from './utils';
-import drawingMovement from './drawingMovement';
+import { setting } from './utils';
+import movement from './movement';
 
 const actors = {
   human: {
@@ -37,8 +37,12 @@ const actors = {
 // };
 
 export default function scene(context) {
-  const state = { ctx: context, actors, step: 20 };
+  const state = {
+    ctx: context,
+    actors,
+    step: 20,
+  };
 
-  drawField(state);
-  drawingMovement(state);
+  setting(state);
+  movement(state);
 }

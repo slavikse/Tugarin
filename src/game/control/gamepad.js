@@ -1,4 +1,4 @@
-import { createEvent } from './utils';
+import { movement } from './utils';
 
 window.addEventListener('gamepadconnected', loop);
 window.addEventListener('gamepaddisconnected', loopStop);
@@ -10,10 +10,7 @@ function loop() {
   loopId = requestAnimationFrame(loop);
   const [{ axes: [x, y] }] = navigator.getGamepads();
 
-  if (
-    x !== -1 && x !== 1
-    && y !== -1 && y !== 1
-  ) {
+  if (x !== -1 && x !== 1 && y !== -1 && y !== 1) {
     isPressed = false;
     return;
   } else if (isPressed) {
@@ -23,13 +20,13 @@ function loop() {
   isPressed = true;
 
   if (y === -1) {
-    createEvent('move-top');
+    movement({ name: 'human', side: 'top' });
   } else if (x === 1) {
-    createEvent('move-right');
+    movement({ name: 'human', side: 'right' });
   } else if (y === 1) {
-    createEvent('move-bottom');
+    movement({ name: 'human', side: 'bottom' });
   } else if (x === -1) {
-    createEvent('move-left');
+    movement({ name: 'human', side: 'left' });
   }
 }
 

@@ -1,4 +1,4 @@
-import { createEvent } from './utils';
+import { movement } from './utils';
 
 window.addEventListener('keydown', keydown);
 window.addEventListener('keyup', keyup);
@@ -23,13 +23,13 @@ function keydown({ keyCode }) {
   const keyCodeArrowLeft = 37;
 
   if (keyCode === keyCodeW || keyCode === keyCodeArrowTop) {
-    createEvent('move-top');
+    movement({ name: 'human', side: 'top' });
   } else if (keyCode === keyCodeD || keyCode === keyCodeArrowRight) {
-    createEvent('move-right');
+    movement({ name: 'human', side: 'right' });
   } else if (keyCode === keyCodeS || keyCode === keyCodeArrowBottom) {
-    createEvent('move-bottom');
+    movement({ name: 'human', side: 'bottom' });
   } else if (keyCode === keyCodeA || keyCode === keyCodeArrowLeft) {
-    createEvent('move-left');
+    movement({ name: 'human', side: 'left' });
   }
 }
 
