@@ -4,10 +4,12 @@ import movement from './movement';
 const actors = {
   human: {
     position: [100, 100],
+    positionDefault: [100, 100],
     color: 'Chartreuse',
   },
   ai: {
     position: [0, 200],
+    positionDefault: [0, 200],
     color: 'Crimson',
   },
 };

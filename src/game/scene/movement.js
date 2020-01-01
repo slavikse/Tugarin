@@ -27,8 +27,7 @@ const mode = 'game';
 const iterationConstraint = 1000 / 15;
 setTimeout(move, iterationConstraint);
 
-function move() {
-  // TODO: параллельно
+async function move() {
   moveActor('human');
   moveActor('ai');
 
@@ -40,21 +39,16 @@ function move() {
 }
 
 function moveActor(name) {
-  erase(name);
-  calc(name);
-
-  // TODO: проверка выхода за границы поля с помощью сетки.
-  // с помощью стен. пересечение со стеной или игроком - конец игры.
-
-  // TODO: начало новой игры
-
-  draw(name);
-}
-
-function erase(name) {
   const actor = state.actors[name];
 
-  state.ctx.fillStyle = '#333';
+  draw({ action: 'erase', actor });
+  calc({ actor, name });
+  canEdge(actor);
+  draw({ action: 'draw', actor });
+}
+
+function draw({ action, actor }) {
+  state.ctx.fillStyle = action === 'erase' ? '#333' : actor.color;
   state.ctx.fillRect(...actor.position, state.step, state.step);
 }
 
@@ -65,15 +59,18 @@ const actions = {
   left: ([x, y]) => [x - state.step, y],
 };
 
-function calc(name) {
-  const actor = state.actors[name];
-
+function calc({ actor, name }) {
   actor.position = actions[actors[name].side](actor.position);
 }
 
-function draw(name) {
-  const actor = state.actors[name];
+function canEdge(actor) {
+  const [x, y] = actor.position;
+  const { innerWidth, innerHeight } = window;
 
-  state.ctx.fillStyle = actor.color;
-  state.ctx.fillRect(...actor.position, state.step, state.step);
+  if (x < 0 || y < 0 || x > innerWidth || y > innerHeight) {
+    actor.position = actor.positionDefault;
+
+    // TODO: событие окончания игры.
+    console.log('end');
+  }
 }
