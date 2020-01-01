@@ -17,14 +17,19 @@ function keydown({ keyCode }) {
   const keyCodeS = 83;
   const keyCodeD = 68;
 
-  if (keyCode === keyCodeW) {
+  const keyCodeArrowTop = 38;
+  const keyCodeArrowRight = 39;
+  const keyCodeArrowBottom = 40;
+  const keyCodeArrowLeft = 37;
+
+  if (keyCode === keyCodeW || keyCode === keyCodeArrowTop) {
     createEvent('move-top');
-  } else if (keyCode === keyCodeA) {
-    createEvent('move-left');
-  } else if (keyCode === keyCodeS) {
-    createEvent('move-bottom');
-  } else if (keyCode === keyCodeD) {
+  } else if (keyCode === keyCodeD || keyCode === keyCodeArrowRight) {
     createEvent('move-right');
+  } else if (keyCode === keyCodeS || keyCode === keyCodeArrowBottom) {
+    createEvent('move-bottom');
+  } else if (keyCode === keyCodeA || keyCode === keyCodeArrowLeft) {
+    createEvent('move-left');
   }
 }
 

@@ -15,9 +15,6 @@ const movement = {
   side: 'moveRight',
 };
 
-// TODO: проверка выхода за границы поля
-// с помощью стен. пересечение со стеной или игроком - конец игры.
-
 function setMovement(e, side) {
   movement.e = e;
   movement.side = side;
@@ -26,7 +23,7 @@ function setMovement(e, side) {
 // TODO: вводить через команду запуска?
 // train | game
 const mode = 'game';
-const iterationConstraint = 1000 / 10;
+const iterationConstraint = 1000 / 15;
 setTimeout(move, iterationConstraint);
 
 function move() {
@@ -34,6 +31,12 @@ function move() {
 
   erase(actor);
   calc(actor);
+
+  // TODO: проверка выхода за границы поля
+  // с помощью стен. пересечение со стеной или игроком - конец игры.
+
+  // TODO: начало новой игры
+
   draw(actor);
 
   if (mode === 'game') {
@@ -49,10 +52,10 @@ function erase(actor) {
 }
 
 const actions = {
-  moveTop: ([x, y]) => ([x, y - state.step]),
-  moveRight: ([x, y]) => ([x + state.step, y]),
-  moveBottom: ([x, y]) => ([x, y + state.step]),
-  moveLeft: ([x, y]) => ([x - state.step, y]),
+  moveTop: ([x, y]) => [x, y - state.step],
+  moveRight: ([x, y]) => [x + state.step, y],
+  moveBottom: ([x, y]) => [x, y + state.step],
+  moveLeft: ([x, y]) => [x - state.step, y],
 };
 
 function calc(actor) {
