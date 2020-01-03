@@ -48,28 +48,44 @@
         height: 100vh;
       }
 
+      .mode,
       .quit {
         position: absolute;
         top: 0;
-        right: 0;
-        width: 30px;
         height: 30px;
         border: none;
         line-height: 0.8;
         color: white;
-        background-color: brown;
         user-select: none;
         cursor: pointer;
       }
 
+      .mode:focus,
       .quit:focus {
         outline: none;
+      }
+
+      .mode {
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        background-color: chocolate;
+      }
+
+      .quit {
+        right: 0;
+        width: 30px;
+        background-color: brown;
       }
     </style>
   </head>
 
   <body>
     <canvas class="canvas"></canvas>
+
+    <button class="mode">
+      mode
+    </button>
 
     <button class="quit">
       x

@@ -1,48 +1,59 @@
 import { setting } from './utils';
 import movement from './movement';
 
+const size = 20;
+
 const actors = {
   human: {
-    position: [100, 100],
-    positionDefault: [100, 100],
-    color: 'Chartreuse',
+    name: 'human',
+    side: 'right',
+    sideDefault: 'right',
+    position: [size * 5, size * 5],
+    positionDefault: [size * 5, size * 5],
+    // #7FFF00 -> 127,255,0
+    color: 'chartreuse',
+    rgb: '127,255,0',
   },
   ai: {
-    position: [0, 200],
-    positionDefault: [0, 200],
-    color: 'Crimson',
+    name: 'ai',
+    side: 'left',
+    sideDefault: 'left',
+    position: [window.innerWidth - size * 5, size * 10],
+    positionDefault: [window.innerWidth - size * 5, size * 10],
+    // #DC143C -> 220,20,60
+    color: 'crimson',
+    rgb: '220,20,60',
   },
 };
 
-// // TODO: много
-// {
-//   type: 'wall',
-//   position: [0, 0],
-//   color: 'Black',
-// },
-// // TODO: много
-// {
-//   type: 'apple',
-//   position: [200, 200],
-//   color: 'DarkOrange',
-// }
+// TODO: случайное размещение
+const staticActors = [
+  {
+    name: 'wall',
+    // #000000 -> 0,0,0
+    color: 'black',
+    rgb: '0,0,0',
+    items: [
+      { position: [size * 0, size * 0] },
+    ],
+  },
+  {
+    name: 'apple',
+    // #FF8C00 -> 255,140,0
+    color: 'darkOrange',
+    rgb: '255,140,0',
+    items: [
+      { position: [size * 10, size * 15] },
+    ],
+  },
+];
 
-// TODO: расположение стен.
-// const wallsActors = {
-//   color: 'Black',
-//   walls: [
-
-//   {
-//     position: [0, 0],
-//   },
-//   ]
-// };
-
-export default function scene(context) {
+export default function scene(ctxRef) {
   const state = {
-    ctx: context,
+    ctx: ctxRef,
     actors,
-    step: 20,
+    staticActors,
+    size,
   };
 
   setting(state);

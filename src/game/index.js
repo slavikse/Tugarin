@@ -7,6 +7,6 @@ window.addEventListener('resize', render);
 render();
 
 function render() {
-  const context = canvas();
-  scene(context);
+  const ctx = canvas();
+  scene(ctx);
 }
