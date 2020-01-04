@@ -3,6 +3,16 @@ import { movement } from './utils';
 window.addEventListener('keydown', keydown);
 window.addEventListener('keyup', keyup);
 
+const humanKeyCodeW = 87;
+const humanKeyCodeD = 68;
+const humanKeyCodeS = 83;
+const humanKeyCodeA = 65;
+
+const aiKeyCodeArrowTop = 38;
+const aiKeyCodeArrowRight = 39;
+const aiKeyCodeArrowBottom = 40;
+const aiKeyCodeArrowLeft = 37;
+
 let isNotPressed  = true;
 
 function keydown({ keyCode }) {
@@ -12,24 +22,26 @@ function keydown({ keyCode }) {
     return;
   }
 
-  const keyCodeW = 87;
-  const keyCodeA = 65;
-  const keyCodeS = 83;
-  const keyCodeD = 68;
-
-  const keyCodeArrowTop = 38;
-  const keyCodeArrowRight = 39;
-  const keyCodeArrowBottom = 40;
-  const keyCodeArrowLeft = 37;
-
-  if (keyCode === keyCodeW || keyCode === keyCodeArrowTop) {
+  if (keyCode === humanKeyCodeW) {
     movement({ name: 'human', side: 'top' });
-  } else if (keyCode === keyCodeD || keyCode === keyCodeArrowRight) {
+  } else if (keyCode === humanKeyCodeD) {
     movement({ name: 'human', side: 'right' });
-  } else if (keyCode === keyCodeS || keyCode === keyCodeArrowBottom) {
+  } else if (keyCode === humanKeyCodeS) {
     movement({ name: 'human', side: 'bottom' });
-  } else if (keyCode === keyCodeA || keyCode === keyCodeArrowLeft) {
+  } else if (keyCode === humanKeyCodeA) {
     movement({ name: 'human', side: 'left' });
+  }
+
+  if (1) {
+    if (keyCode === aiKeyCodeArrowTop) {
+      movement({ name: 'ai', side: 'top' });
+    } else if (keyCode === aiKeyCodeArrowRight) {
+      movement({ name: 'ai', side: 'right' });
+    } else if (keyCode === aiKeyCodeArrowBottom) {
+      movement({ name: 'ai', side: 'bottom' });
+    } else if (keyCode === aiKeyCodeArrowLeft) {
+      movement({ name: 'ai', side: 'left' });
+    }
   }
 }
 

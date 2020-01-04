@@ -46,6 +46,7 @@ async function moveActor(actor) {
       }
 
       draw({ action: 'draw', actor });
+
       resolve();
     });
   });
