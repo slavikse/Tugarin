@@ -4,7 +4,7 @@ export default function canvas() {
   $canvas.width = clientWidth;
   $canvas.height = clientHeight;
 
-  const ctx = $canvas.getContext('2d');
+  const ctx = $canvas.getContext('2d', { alpha: false });
   ctx.imageSmoothingEnabled = false;
 
   return ctx;

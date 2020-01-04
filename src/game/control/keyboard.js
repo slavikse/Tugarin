@@ -30,18 +30,14 @@ function keydown({ keyCode }) {
     movement({ name: 'human', side: 'bottom' });
   } else if (keyCode === humanKeyCodeA) {
     movement({ name: 'human', side: 'left' });
-  }
-
-  if (1) {
-    if (keyCode === aiKeyCodeArrowTop) {
-      movement({ name: 'ai', side: 'top' });
-    } else if (keyCode === aiKeyCodeArrowRight) {
-      movement({ name: 'ai', side: 'right' });
-    } else if (keyCode === aiKeyCodeArrowBottom) {
-      movement({ name: 'ai', side: 'bottom' });
-    } else if (keyCode === aiKeyCodeArrowLeft) {
-      movement({ name: 'ai', side: 'left' });
-    }
+  } else if (keyCode === aiKeyCodeArrowTop) {
+    movement({ name: 'ai', side: 'top' });
+  } else if (keyCode === aiKeyCodeArrowRight) {
+    movement({ name: 'ai', side: 'right' });
+  } else if (keyCode === aiKeyCodeArrowBottom) {
+    movement({ name: 'ai', side: 'bottom' });
+  } else if (keyCode === aiKeyCodeArrowLeft) {
+    movement({ name: 'ai', side: 'left' });
   }
 }
 

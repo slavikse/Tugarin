@@ -1,28 +1,20 @@
 export default function setting(state) {
   drawScene(state);
-  drawStaticActors(state);
-  drawActors(state);
+
+  state.statics.forEach((actor) => drawActors({ state, actor }));
+  Object.values(state.actors).forEach((actor) => drawActors({ state, actor }));
 }
 
 function drawScene(state) {
   const { innerWidth, innerHeight } = window;
-  state.ctx.fillStyle = '#333';
+  state.ctx.fillStyle = state.colors.erase;
   state.ctx.fillRect(0, 0, innerWidth, innerHeight);
 }
 
-function drawStaticActors(state) {
-  state.staticActors.forEach((actors) => {
-    state.ctx.fillStyle = actors.color;
+function drawActors({ state, actor }) {
+  state.ctx.fillStyle = actor.color;
 
-    actors.items.forEach((item) => {
-      state.ctx.fillRect(...item.position, state.size, state.size);
-    });
-  });
-}
-
-function drawActors(state) {
-  Object.values(state.actors).forEach((actor) => {
-    state.ctx.fillStyle = actor.color;
-    state.ctx.fillRect(...actor.position, state.size, state.size);
+  actor.cells.forEach((cell) => {
+    state.ctx.fillRect(...cell.position, state.size, state.size);
   });
 }

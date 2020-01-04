@@ -3,57 +3,98 @@ import movement from './movement';
 
 const size = 20;
 
-const actors = {
+const colors = {
+  wall: {
+    color: 'black', // #000000
+    rgb: '0,0,0',
+  },
+  apple: {
+    color: 'darkOrange', // #FF8C00
+    rgb: '255,140,0',
+  },
   human: {
-    name: 'human',
-    side: 'right',
-    sideDefault: 'right',
-    position: [size * 5, size * 5],
-    positionDefault: [size * 5, size * 5],
-    // #7FFF00 -> 127,255,0
-    color: 'chartreuse',
+    color: 'chartreuse', // #7FFF00
     rgb: '127,255,0',
   },
   ai: {
-    name: 'ai',
-    side: 'left',
-    sideDefault: 'left',
-    position: [window.innerWidth - size * 5, size * 10],
-    positionDefault: [window.innerWidth - size * 5, size * 10],
-    // #DC143C -> 220,20,60
-    color: 'crimson',
+    color: 'crimson', // #DC143C
     rgb: '220,20,60',
   },
+  erase: '#333',
 };
 
 // TODO: случайное размещение
-const staticActors = [
+const statics = [
   {
     name: 'wall',
-    // #000000 -> 0,0,0
-    color: 'black',
-    rgb: '0,0,0',
-    items: [
+    color: colors.wall.color,
+    rgb: colors.wall.rgb,
+    cells: [
       { position: [size * 0, size * 0] },
     ],
   },
   {
     name: 'apple',
-    // #FF8C00 -> 255,140,0
-    color: 'darkOrange',
-    rgb: '255,140,0',
-    items: [
+    color: colors.apple.color,
+    rgb: colors.apple.rgb,
+    cells: [
       { position: [size * 10, size * 15] },
     ],
   },
 ];
 
+const actors = {
+  human: {
+    name: 'human',
+    side: 'right',
+    sideDefault: 'right',
+    color: colors.human.color,
+    rgb: colors.human.rgb,
+    cells: [
+      { // Ведущая ячейка.
+        position: [size * 3, size * 1],
+        positionDefault: [size * 3, size * 1],
+      },
+      {
+        position: [size * 2, size * 1],
+        positionDefault: [size * 2, size * 1],
+      },
+      {
+        position: [size * 1, size * 1],
+        positionDefault: [size * 1, size * 1],
+      },
+    ],
+  },
+  ai: {
+    name: 'ai',
+    side: 'left',
+    sideDefault: 'left',
+    color: colors.ai.color,
+    rgb: colors.ai.rgb,
+    cells: [
+      { // Ведущая ячейка.
+        position: [window.innerWidth - size * 3, size * 1],
+        positionDefault: [window.innerWidth - size * 3, size * 1],
+      },
+      {
+        position: [window.innerWidth - size * 2, size * 1],
+        positionDefault: [window.innerWidth - size * 2, size * 1],
+      },
+      {
+        position: [window.innerWidth - size * 1, size * 1],
+        positionDefault: [window.innerWidth - size * 1, size * 1],
+      },
+    ],
+  },
+};
+
 export default function scene(ctxRef) {
   const state = {
     ctx: ctxRef,
-    actors,
-    staticActors,
     size,
+    colors,
+    statics,
+    actors,
   };
 
   setting(state);

@@ -34,27 +34,27 @@ async function move() {
 async function moveActor(actor) {
   await new Promise((resolve) => {
     setImmediate(async () => {
-      draw({ action: 'erase', actor });
-      calc(actor);
+      draw({ color: state.colors.erase, actor });
+      swap(actor);
 
-      if(hasEdge(actor)) {
-        // TODO: событие для накопления данных для обучения.
+      if (hasEdge(actor)) {
         reset(actor);
       } else {
-        // TODO: вот тут проверить цвет пикселя?
-        await hasIntersects(actor);
+        hasIntersects(actor);
       }
 
-      draw({ action: 'draw', actor });
-
+      draw({ color: actor.color, actor });
       resolve();
     });
   });
 }
 
-function draw({ action, actor }) {
-  state.ctx.fillStyle = action === 'erase' ? '#333' : actor.color;
-  state.ctx.fillRect(...actor.position, state.size, state.size);
+function draw({ color, actor }) {
+  state.ctx.fillStyle = color;
+
+  actor.cells.forEach((cell) => {
+    state.ctx.fillRect(...cell.position, state.size, state.size);
+  });
 }
 
 const actions = {
@@ -64,46 +64,55 @@ const actions = {
   left: ([x, y]) => [x - state.size, y],
 };
 
-function calc(actor) {
-  actor.position = actions[actor.side](actor.position);
+// Последний занимает место предпоследнего.
+function swap(actor) {
+  for (let i = actor.cells.length - 1; i > 0; i--) {
+    actor.cells[i].position = actor.cells[i - 1].position;
+  }
+
+  const [cell] = actor.cells;
+  cell.position = actions[actor.side](cell.position);
 }
 
 function hasEdge(actor) {
-  const [x, y] = actor.position;
+  const [{ position: [x, y] }] = actor.cells;
   const { innerWidth, innerHeight } = window;
 
   return x < 0 || y < 0 || x > innerWidth || y > innerHeight;
 }
 
+// TODO: событие окончания игры для обучения
 function reset(actor) {
   actor.side = actor.sideDefault;
-  actor.position = actor.positionDefault;
+  actor.cells = actor.cells.slice(0, 3);
+
+  actor.cells.forEach((cell) => {
+    cell.position = cell.positionDefault;
+  });
 }
 
-async function hasIntersects(actor) {
-  await new Promise((resolve) => {
-    setImmediate(() => {
-      const [r, g, b] = state.ctx.getImageData(...actor.position, 1, 1).data;
-      const rgbString = `${r},${g},${b}`;
+function hasIntersects(actor) {
+  const [cell] = actor.cells;
+  const [r, g, b] = state.ctx.getImageData(...cell.position, 1, 1).data;
+  const rgbString = `${r},${g},${b}`;
 
-      // TODO: будет срабатывать, когда змейка будет состоять из 3х ячеек
-      const isActor = Object.values(state.actors)
-        .find(({ rgb }) => rgb === rgbString);
+  const isStaticActor = state.statics
+    .find(({ rgb }) => rgb === rgbString);
 
-      const isStaticActor = state.staticActors
-        .find(({ rgb }) => rgb === rgbString);
+  const isActor = Object.values(state.actors)
+    .find(({ rgb }) => rgb === rgbString);
 
-      if (isActor) {
-        console.log('isActor', rgbString, isActor)
-        // TODO: событие окончания игры.
-        // reset(actor);
-      } else if (isStaticActor) {
-        console.log('isStaticActor', rgbString, isStaticActor);
-        // TODO: событие окончания игры.
-        // reset(actor);
-      }
-
-      resolve();
-    });
-  });
+  if (isStaticActor) {
+    if (rgbString === state.colors.apple.rgb) {
+      console.log('+1');
+      // TODO: увеличение змейки в размерах.
+      // TODO: создать яблоко в другом случайном месте
+    } else {
+      reset(actor);
+    }
+  } else if (isActor) {
+    // TODO: когда оба сталкиваются главной ячейкой - проиграли оба.
+    console.log('isActor', rgbString, isActor);
+    reset(actor);
+  }
 }
