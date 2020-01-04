@@ -7,6 +7,7 @@ export default function setting(state) {
 
 function drawScene(state) {
   const { innerWidth, innerHeight } = window;
+
   state.ctx.fillStyle = state.colors.erase;
   state.ctx.fillRect(0, 0, innerWidth, innerHeight);
 }

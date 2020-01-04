@@ -1,9 +1,6 @@
-import { setting } from './utils';
-import movement from './movement';
+export const size = 20;
 
-const size = 20;
-
-const colors = {
+export const colors = {
   wall: {
     color: 'black', // #000000
     rgb: '0,0,0',
@@ -24,13 +21,15 @@ const colors = {
 };
 
 // TODO: случайное размещение
-const statics = [
+// TODO: функция на экспорт для создания яблока с случайном месте.
+// предусмотреть: может создаваться прямо в игроке
+export const statics = [
   {
     name: 'wall',
     color: colors.wall.color,
     rgb: colors.wall.rgb,
     cells: [
-      { position: [size * 0, size * 0] },
+      { position: [size, size] },
     ],
   },
   {
@@ -38,12 +37,28 @@ const statics = [
     color: colors.apple.color,
     rgb: colors.apple.rgb,
     cells: [
-      { position: [size * 10, size * 15] },
+      { position: [size * 8, size * 12] },
+    ],
+  },
+  {
+    name: 'apple',
+    color: colors.apple.color,
+    rgb: colors.apple.rgb,
+    cells: [
+      { position: [size * 6, size * 8] },
+    ],
+  },
+  {
+    name: 'apple',
+    color: colors.apple.color,
+    rgb: colors.apple.rgb,
+    cells: [
+      { position: [size * 5, size * 10] },
     ],
   },
 ];
 
-const actors = {
+export const actors = {
   human: {
     name: 'human',
     side: 'right',
@@ -87,16 +102,3 @@ const actors = {
     ],
   },
 };
-
-export default function scene(ctxRef) {
-  const state = {
-    ctx: ctxRef,
-    size,
-    colors,
-    statics,
-    actors,
-  };
-
-  setting(state);
-  movement(state);
-}

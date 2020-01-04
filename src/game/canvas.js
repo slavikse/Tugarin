@@ -1,6 +1,7 @@
 export default function canvas() {
   const $canvas = document.querySelector('.canvas');
   const { clientWidth, clientHeight } = document.documentElement;
+
   $canvas.width = clientWidth;
   $canvas.height = clientHeight;
 

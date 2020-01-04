@@ -22,7 +22,7 @@ const iterationConstraint = 1000 / 5;
 setTimeout(move, iterationConstraint);
 
 async function move() {
-  await Promise.all(Object.values(state.actors).map(moveActor));
+  await Promise.all(Object.values(state.actors).map(redraw));
 
   if (mode === 'game') {
     setTimeout(move, iterationConstraint);
@@ -31,17 +31,13 @@ async function move() {
   }
 }
 
-async function moveActor(actor) {
+async function redraw(actor) {
   await new Promise((resolve) => {
     setImmediate(async () => {
       draw({ color: state.colors.erase, actor });
-      swap(actor);
 
-      if (hasEdge(actor)) {
-        reset(actor);
-      } else {
-        hasIntersects(actor);
-      }
+      swap(actor);
+      intersects(actor);
 
       draw({ color: actor.color, actor });
       resolve();
@@ -64,7 +60,8 @@ const actions = {
   left: ([x, y]) => [x - state.size, y],
 };
 
-// Последний занимает место предпоследнего.
+// TODO: запретить поворот в обратном направлении
+// Последний занимает место предпоследнего и так до первого.
 function swap(actor) {
   for (let i = actor.cells.length - 1; i > 0; i--) {
     actor.cells[i].position = actor.cells[i - 1].position;
@@ -74,6 +71,14 @@ function swap(actor) {
   cell.position = actions[actor.side](cell.position);
 }
 
+function intersects(actor) {
+  if (hasEdge(actor)) {
+    reset(actor);
+  } else {
+    sequential(actor);
+  }
+}
+
 function hasEdge(actor) {
   const [{ position: [x, y] }] = actor.cells;
   const { innerWidth, innerHeight } = window;
@@ -81,7 +86,7 @@ function hasEdge(actor) {
   return x < 0 || y < 0 || x > innerWidth || y > innerHeight;
 }
 
-// TODO: событие окончания игры для обучения
+// TODO: событие окончания игры для сбора данных для обучения
 function reset(actor) {
   actor.side = actor.sideDefault;
   actor.cells = actor.cells.slice(0, 3);
@@ -91,27 +96,33 @@ function reset(actor) {
   });
 }
 
-function hasIntersects(actor) {
+function sequential(actor) {
+  const rgbString = getColor(actor);
+
+  if (rgbString === state.colors.apple.rgb) {
+    actor.cells.push({ position: [-state.size, -state.size] });
+
+    // TODO: создать яблоко в другом случайном месте
+  } else if (rgbString === state.colors.wall.rgb) {
+    reset(actor);
+  } else {
+    hasActor({ actor, rgbString });
+  }
+}
+
+function getColor(actor) {
   const [cell] = actor.cells;
   const [r, g, b] = state.ctx.getImageData(...cell.position, 1, 1).data;
-  const rgbString = `${r},${g},${b}`;
 
-  const isStaticActor = state.statics
-    .find(({ rgb }) => rgb === rgbString);
+  return `${r},${g},${b}`;
+}
 
+function hasActor({ actor, rgbString }) {
   const isActor = Object.values(state.actors)
     .find(({ rgb }) => rgb === rgbString);
 
-  if (isStaticActor) {
-    if (rgbString === state.colors.apple.rgb) {
-      console.log('+1');
-      // TODO: увеличение змейки в размерах.
-      // TODO: создать яблоко в другом случайном месте
-    } else {
-      reset(actor);
-    }
-  } else if (isActor) {
-    // TODO: когда оба сталкиваются главной ячейкой - проиграли оба.
+  if (isActor) {
+    // TODO: когда сталкиваются главной ячейкой (направляющей) - проиграли оба.
     console.log('isActor', rgbString, isActor);
     reset(actor);
   }

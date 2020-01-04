@@ -1,6 +1,5 @@
 import canvas from './canvas';
-// TODO: пока так
-import scene from './scene/scene';
+import scene from './scene';
 import './control';
 
 window.addEventListener('resize', render);
