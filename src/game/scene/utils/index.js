@@ -1,3 +1,3 @@
-import setting from './setting';
+import range from './range';
 
-export { setting };
+export { range };

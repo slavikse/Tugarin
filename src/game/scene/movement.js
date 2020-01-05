@@ -1,5 +1,7 @@
 let state;
 
+// TODO: разбить на модули
+
 export default function movement(stateRef) {
   state = stateRef;
 
@@ -31,6 +33,7 @@ async function move() {
   }
 }
 
+// todo: нельзя ходить сквозь себя
 async function redraw(actor) {
   await new Promise((resolve) => {
     setImmediate(async () => {
@@ -60,7 +63,6 @@ const actions = {
   left: ([x, y]) => [x - state.size, y],
 };
 
-// TODO: запретить поворот в обратном направлении
 // Последний занимает место предпоследнего и так до первого.
 function swap(actor) {
   for (let i = actor.cells.length - 1; i > 0; i--) {
@@ -87,6 +89,7 @@ function hasEdge(actor) {
 }
 
 // TODO: событие окончания игры для сбора данных для обучения
+//   actor проиграл - противоположный игрок - выиграл
 function reset(actor) {
   actor.side = actor.sideDefault;
   actor.cells = actor.cells.slice(0, 3);
@@ -122,8 +125,6 @@ function hasActor({ actor, rgbString }) {
     .find(({ rgb }) => rgb === rgbString);
 
   if (isActor) {
-    // TODO: когда сталкиваются главной ячейкой (направляющей) - проиграли оба.
-    console.log('isActor', rgbString, isActor);
     reset(actor);
   }
 }
