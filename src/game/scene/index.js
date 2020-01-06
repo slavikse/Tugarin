@@ -1,18 +1,12 @@
-import getState from './state';
+import state, { initState } from './state';
 import { setting } from './config';
 import movement from './movement';
 
-const size = 20;
+export function scene(ctx) {
+  initState(ctx);
 
-const types = [
-  { name: 'wall', count: 100 },
-  { name: 'apple', count: 40 },
-];
-
-export default function scene(ctx) {
-  const state = getState({ size, types });
-  Object.assign(state, { ctx });
-
-  setting(state);
-  movement(state);
+  setting();
+  movement();
 }
+
+export default state;

@@ -1,4 +1,4 @@
-import { range } from '../../../utils';
+import { range } from '../../utils';
 
 export default function filling({ statics, size }) {
   const width = Math.round(window.innerWidth / size);

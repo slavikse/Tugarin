@@ -1,5 +1,5 @@
-import { colors } from '../utils';
-import { filling } from './utils';
+import colors from '../colors';
+import filling from './filling';
 
 export default function getStatics({ size, types }) {
   const statics = [];

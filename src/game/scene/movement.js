@@ -1,10 +1,8 @@
-let state;
+import state from './state';
 
-// TODO: разбить на модули
+// TODO: разбить на модули. состояние в модуле. начать с малого
 
-export default function movement(stateRef) {
-  state = stateRef;
-
+export default function movement() {
   window.addEventListener('movement', setSideActor);
 }
 
@@ -37,12 +35,23 @@ async function move() {
 async function redraw(actor) {
   await new Promise((resolve) => {
     setImmediate(async () => {
-      draw({ color: state.colors.erase, actor });
+      const [cell] = actor.cells;
+      const position = actions[actor.side](cell.position);
+      const [r, g, b] = state.ctx.getImageData(...position, 1, 1).data;
+      const rgbString = `${r},${g},${b}`;
 
-      swap(actor);
-      intersects(actor);
+      if (actor.rgb === rgbString) {
+        draw({ color: state.colors.erase, actor });
+        reset(actor);
+      } else {
+        draw({ color: state.colors.erase, actor });
 
-      draw({ color: actor.color, actor });
+        swap(actor);
+        intersects(actor);
+
+        draw({ color: actor.color, actor });
+      }
+
       resolve();
     });
   });

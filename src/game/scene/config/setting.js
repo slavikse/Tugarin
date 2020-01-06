@@ -1,18 +1,20 @@
-export default function setting(state) {
-  drawScene(state);
+import state from '..';
 
-  state.statics.forEach((actor) => drawActors({ state, actor }));
-  Object.values(state.actors).forEach((actor) => drawActors({ state, actor }));
+export default function setting() {
+  drawScene();
+
+  state.statics.forEach(drawActors);
+  Object.values(state.actors).forEach(drawActors);
 }
 
-function drawScene(state) {
+function drawScene() {
   const { innerWidth, innerHeight } = window;
 
   state.ctx.fillStyle = state.colors.erase;
   state.ctx.fillRect(0, 0, innerWidth, innerHeight);
 }
 
-function drawActors({ state, actor }) {
+function drawActors(actor) {
   state.ctx.fillStyle = actor.color;
 
   actor.cells.forEach((cell) => {

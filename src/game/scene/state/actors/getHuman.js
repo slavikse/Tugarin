@@ -1,4 +1,4 @@
-import { colors } from '../utils';
+import colors from '../colors';
 
 export default function getHuman({ size }) {
   return {
