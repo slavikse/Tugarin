@@ -9,15 +9,15 @@ export default async function redraw(actor) {
   await new Promise((resolve) => {
     setImmediate(async () => {
       if (canNotMove(actor)) {
-        draw({ color: colors.erase, actor });
+        draw({ rgb: colors.erase.rgb, actor });
         reset(actor);
       } else {
-        draw({ color: colors.erase, actor });
+        draw({ rgb: colors.erase.rgb, actor });
 
         swap(actor);
         intersects(actor);
 
-        draw({ color: actor.color, actor });
+        draw({ rgb: actor.rgb, actor });
       }
 
       resolve();

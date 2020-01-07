@@ -1,12 +1,11 @@
 import colors from '../colors';
 import { size } from '..';
 
-export default function ai() {
+export default function createAi() {
   return {
     name: 'ai',
     side: 'bottom',
     sideDefault: 'bottom',
-    color: colors.ai.color,
     rgb: colors.ai.rgb,
     cells: [
       { // Ведущая ячейка.

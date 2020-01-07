@@ -1,8 +1,8 @@
 import { ctx } from '../../state';
 
-export default function getColor(actor) {
+export default function getRGB(actor) {
   const [cell] = actor.cells;
   const [r, g, b] = ctx.getImageData(...cell.position, 1, 1).data;
 
-  return `${r},${g},${b}`;
+  return `rgb(${r},${g},${b})`;
 }

@@ -1,12 +1,12 @@
 import actions from './actions';
-import getColor from './getColor';
+import getRGB from './getRGB';
 import hasActor from './hasActor';
 import hasEdge from './hasEdge';
 import reset from './reset';
 
 export {
   actions,
-  getColor,
+  getRGB,
   hasActor,
   hasEdge,
   reset,

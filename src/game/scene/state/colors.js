@@ -1,19 +1,17 @@
 export default {
+  erase: {
+    rgb: 'rgb(50,50,50)',
+  },
   wall: {
-    color: 'black', // #000000
-    rgb: '0,0,0',
+    rgb: 'rgb(0,0,0)',
   },
   apple: {
-    color: 'darkOrange', // #FF8C00
-    rgb: '255,140,0',
+    rgb: 'rgb(0,255,0)',
   },
   human: {
-    color: 'chartreuse', // #7FFF00
-    rgb: '127,255,0',
+    rgb: 'rgb(30,144,255)',
   },
   ai: {
-    color: 'crimson', // #DC143C
-    rgb: '220,20,60',
+    rgb: 'rgb(220,20,60)',
   },
-  erase: '#333',
 };

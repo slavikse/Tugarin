@@ -6,7 +6,7 @@ export default function canNotMove(actor) {
   const position = actions[actor.side](cell.position);
 
   const [r, g, b] = ctx.getImageData(...position, 1, 1).data;
-  const rgbString = `${r},${g},${b}`;
+  const rgbString = `rgb(${r},${g},${b})`;
 
   return actor.rgb === rgbString;
 }

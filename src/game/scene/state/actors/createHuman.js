@@ -1,12 +1,11 @@
 import colors from '../colors';
 import { size } from '..';
 
-export default function human() {
+export default function createHuman() {
   return {
     name: 'human',
     side: 'right',
     sideDefault: 'right',
-    color: colors.human.color,
     rgb: colors.human.rgb,
     cells: [
       { // Ведущая ячейка.
