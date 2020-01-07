@@ -1,9 +1,9 @@
-import getHuman from './getHuman';
-import getAi from './getAi';
+import human from './human';
+import ai from './ai';
 
-export default function getActors({ size }) {
+export default function actors() {
   return {
-    human: getHuman({ size }),
-    ai: getAi({ size }),
+    human: human(),
+    ai: ai(),
   };
 };

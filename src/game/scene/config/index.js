@@ -1,3 +1,4 @@
+import canvas from './canvas';
 import setting from './setting';
 
-export { setting };
+export { canvas, setting };

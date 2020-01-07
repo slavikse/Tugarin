@@ -1,23 +1,23 @@
-import state from '..';
+import { ctx, statics, actors, colors, size } from '../state';
 
 export default function setting() {
   drawScene();
 
-  state.statics.forEach(drawActors);
-  Object.values(state.actors).forEach(drawActors);
+  statics.forEach(drawActors);
+  Object.values(actors).forEach(drawActors);
 }
 
 function drawScene() {
   const { innerWidth, innerHeight } = window;
 
-  state.ctx.fillStyle = state.colors.erase;
-  state.ctx.fillRect(0, 0, innerWidth, innerHeight);
+  ctx.fillStyle = colors.erase;
+  ctx.fillRect(0, 0, innerWidth, innerHeight);
 }
 
 function drawActors(actor) {
-  state.ctx.fillStyle = actor.color;
+  ctx.fillStyle = actor.color;
 
   actor.cells.forEach((cell) => {
-    state.ctx.fillRect(...cell.position, state.size, state.size);
+    ctx.fillRect(...cell.position, size, size);
   });
 }

@@ -1,22 +1,23 @@
-import getStatics from './statics';
-import getActors from './actors';
 import colors from './colors';
+import getStatics from './getStatics';
+import getActors from './actors';
 
-const size = 20;
+export const size = 20;
+
 const types = [
   { name: 'wall', count: 100 },
   { name: 'apple', count: 40 },
 ];
 
-const state = {
-  size,
-  colors,
-  statics: getStatics({ size, types }),
-  actors: getActors({ size }),
+const statics = getStatics(types);
+const actors = getActors();
+
+export { statics, actors, colors };
+
+let ctx = {};
+
+export function init(ctxRef) {
+  ctx = ctxRef;
 };
 
-export function initState(ctx) {
-  Object.assign(state, { ctx });
-};
-
-export default state;
+export { ctx };

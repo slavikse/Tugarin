@@ -1,12 +1,12 @@
-import state, { initState } from './state';
-import { setting } from './config';
+import { init } from './state';
+import { canvas, setting } from './config';
 import movement from './movement';
 
+export { canvas };
+
 export function scene(ctx) {
-  initState(ctx);
+  init(ctx);
 
   setting();
   movement();
 }
-
-export default state;
