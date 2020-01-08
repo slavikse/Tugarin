@@ -1,7 +1,7 @@
 {
   "name": "tugarin",
   "productName": "Tugarin",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Tugarin Game",
   "main": "./.webpack/main",
   "scripts": {
@@ -63,6 +63,7 @@
   },
   "dependencies": {
     "@tensorflow/tfjs": "^1.5.1",
-    "electron-squirrel-startup": "^1.0.0"
+    "electron-squirrel-startup": "^1.0.0",
+    "lodash.debounce": "^4.0.8"
   }
 }

@@ -1,4 +1,4 @@
-import { ctx } from '../../state';
+import { ctx } from '../..';
 
 export default function getRGB(actor) {
   const [cell] = actor.cells;

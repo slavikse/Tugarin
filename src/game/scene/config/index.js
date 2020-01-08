@@ -1,4 +1,4 @@
 import canvas from './canvas';
-import setting from './setting';
+import draws from './draws';
 
-export { canvas, setting };
+export { canvas, draws };

@@ -1,5 +1,5 @@
 import { actions } from './utils';
-import { ctx } from '../state';
+import { ctx } from '..';
 
 export default function canNotMove(actor) {
   const [cell] = actor.cells;

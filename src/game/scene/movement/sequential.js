@@ -1,5 +1,6 @@
-import { getRGB, reset, hasActor } from './utils';
-import { colors, size, createStatics, drawActor } from '../state';
+import { getRGB, reset } from './utils';
+import { colors, size, createStatics, actors } from '../state';
+import { draw } from '../utils';
 
 export default function sequential(actor) {
   const rgbString = getRGB(actor);
@@ -9,8 +10,8 @@ export default function sequential(actor) {
     addApple();
   } else if (rgbString === colors.wall.rgb) {
     reset(actor);
-  } else {
-    hasActor({ actor, rgbString });
+  } else if (hasActor(rgbString)) {
+    reset(actor);
   }
 }
 
@@ -20,5 +21,9 @@ function increaseActor(actor) {
 
 function addApple() {
   const types = [{ name: 'apple', count: 1 }];
-  createStatics({ types, isWalls: false }).forEach(drawActor);
+  createStatics(types).forEach((actor) => draw({ actor, rgb: actor.rgb }));
+}
+
+function hasActor(rgbString) {
+  return Object.values(actors).find(({ rgb }) => rgb === rgbString);
 }

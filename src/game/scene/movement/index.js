@@ -1,8 +1,13 @@
-import sideActor from './sideActor';
+import { actors } from '../state';
 import move from './move';
 
-export default async function movement() {
+export default function movement() {
   window.addEventListener('movement', sideActor);
 
-  await move();
+  // await
+  move();
+}
+
+function sideActor({ detail: { name, side } }) {
+  actors[name].side = side;
 }

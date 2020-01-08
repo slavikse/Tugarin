@@ -1,28 +1,17 @@
-import { ctx, size } from '..';
+import { size } from '..';
+import { ctx } from '../..';
 import colors from '../colors';
 import { range } from '../../utils';
 
-export default function createStatics({ types, isWalls }) {
-  const width = Math.round(window.innerWidth / size);
-  const height = Math.round(window.innerHeight / size);
-
+export default function createStatics(types) {
   return types.reduce((actors, { name, count }) => {
     actors.push({
       name,
       rgb: colors[name].rgb,
       cells: Array(count).fill(0).map(() => {
-        const cellRef = {
-          position: [
-            size * range(0, width),
-            size * range(0, height),
-          ],
-        };
+        const cellRef = { position: getPosition() };
 
-        if (isWalls) {
-          return cellRef;
-        } else {
-          while (hasNotFreePlace({ cellRef, width, height }));
-        }
+        while (hasNotFreePlace(cellRef));
 
         return cellRef;
       }),
@@ -32,11 +21,21 @@ export default function createStatics({ types, isWalls }) {
   }, []);
 }
 
-function hasNotFreePlace({ cellRef, width, height }) {
-  cellRef.position = [
-    size * range(0, width),
-    size * range(0, height),
+function getPosition() {
+  const { clientWidth, clientHeight } = document.documentElement;
+
+  return [
+    size * range(0, getRangeMax(clientWidth)),
+    size * range(0, getRangeMax(clientHeight)),
   ];
+}
+
+function getRangeMax(length) {
+  return Math.round((length - size * 1.5) / size);
+}
+
+function hasNotFreePlace(cellRef) {
+  cellRef.position = getPosition();
 
   const [r, g, b] = ctx.getImageData(...cellRef.position, 1, 1).data;
   const rgbString = `rgb(${r},${g},${b})`;

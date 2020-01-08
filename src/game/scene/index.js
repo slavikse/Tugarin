@@ -1,12 +1,14 @@
-import { init } from './state';
-import { canvas, setting } from './config';
+import { initiate } from './state';
+import { canvas, draws } from './config';
 import movement from './movement';
 
 export { canvas };
+export let ctx;
 
-export function scene(ctx) {
-  init(ctx);
+export function scene(ctxRef) {
+  ctx = ctxRef;
 
-  setting();
+  initiate();
+  draws();
   movement();
 }

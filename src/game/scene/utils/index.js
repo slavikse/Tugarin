@@ -1,3 +1,4 @@
+import draw from './draw';
 import range from './range';
 
-export { range };
+export { draw, range };

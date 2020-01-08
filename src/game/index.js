@@ -1,7 +1,11 @@
+import debounce from 'lodash.debounce';
+
 import { canvas, scene } from './scene';
 import './control';
 
-window.addEventListener('resize', render);
+const renderDebounced = debounce(render, 300);
+window.addEventListener('resize', renderDebounced);
+
 render();
 
 function render() {

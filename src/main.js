@@ -1,12 +1,6 @@
 'use strict';
 
-import {
-  BrowserWindow,
-  screen,
-  app,
-  Menu,
-} from 'electron';
-
+import { BrowserWindow, screen, app } from 'electron';
 import isHotReload from 'electron-squirrel-startup';
 
 if (isHotReload) {
@@ -16,7 +10,7 @@ if (isHotReload) {
 const isDevelopment = process.env.NODE_ENV === 'development';
 let mainWindow;
 
-app.on('ready', createWindow);
+app.on('ready', cunfigureMainWindow);
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
@@ -26,14 +20,9 @@ app.on('window-all-closed', () => {
 
 app.on('activate', () => {
   if (!mainWindow) {
-    createWindow();
+    cunfigureMainWindow();
   }
 });
-
-function createWindow() {
-  cunfigureMainWindow();
-  cunfigureMenu();
-};
 
 function cunfigureMainWindow() {
   const { workAreaSize } = screen.getPrimaryDisplay();
@@ -62,17 +51,4 @@ function cunfigureMainWindow() {
   mainWindow.on('closed', () => {
     mainWindow = undefined;
   });
-}
-
-function cunfigureMenu() {
-  const menu = Menu.buildFromTemplate([
-    {
-      label: 'Window',
-      submenu: [
-        { role: 'quit' },
-      ],
-    },
-  ]);
-
-  Menu.setApplicationMenu(menu);
 }

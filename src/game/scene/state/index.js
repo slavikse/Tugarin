@@ -1,31 +1,21 @@
 import colors from './colors';
-import { createStatics, drawActor } from './statics';
+import { createStatics } from './statics';
 import createActors from './actors';
 
-const size = 20;
+export { colors };
+export { createStatics };
 
-let ctx;
-let statics;
-let actors;
+export let statics;
+export let actors;
 
-export function init(ctxRef) {
-  ctx = ctxRef;
+export const size = 20;
 
+export function initiate() {
   const types = [
     { name: 'wall', count: 200 },
-    { name: 'apple', count: 40 },
+    { name: 'apple', count: 50 },
   ];
 
-  statics = createStatics({ types, isWalls: true });
+  statics = createStatics(types);
   actors = createActors();
-};
-
-export {
-  size,
-  ctx,
-  colors,
-  createStatics,
-  drawActor,
-  statics,
-  actors,
 };
