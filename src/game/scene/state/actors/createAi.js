@@ -1,7 +1,7 @@
 import colors from '../colors';
 import { size } from '..';
 
-export default function createAi() {
+export default function createAI() {
   return {
     name: 'ai',
     side: 'bottom',
