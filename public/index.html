@@ -1,96 +1,94 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="utf-8">
+<head>
+<meta charset="utf-8">
 
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="
-        default-src 'self';
-        script-src 'self';
-        style-src 'unsafe-inline';
-      "
-    >
+<meta
+  http-equiv="Content-Security-Policy"
+  content="
+    default-src 'self';
+    script-src 'self';
+    style-src 'unsafe-inline';
+  "
+>
 
-    <meta
-      http-equiv="X-Content-Security-Policy"
-      content="
-        default-src 'self';
-        script-src 'self';
-        style-src 'unsafe-inline';
-      "
-    >
+<meta
+  http-equiv="X-Content-Security-Policy"
+  content="
+    default-src 'self';
+    script-src 'self';
+    style-src 'unsafe-inline';
+  "
+>
 
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    >
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+>
 
-    <title>Tugarin</title>
+<title>Tugarin</title>
 
-    <style>
-      *,
-      *::before,
-      *::after {
-        box-sizing: border-box;
-      }
+<style>
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-      body {
-        margin: 0;
-        font-family: sans-serif;
-        color: white;
-        background-color: #333;
-      }
+body {
+  margin: 0;
+  font-family: sans-serif;
+  color: white;
+  background-color: #333;
+}
 
-      .canvas {
-        display: block;
-        width: 100vw;
-        height: 100vh;
-      }
+.scene {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
 
-      .mode,
-      .quit {
-        position: absolute;
-        top: 0;
-        height: 20px;
-        padding: 0;
-        border: none;
-        line-height: 0.8;
-        color: white;
-        user-select: none;
-        cursor: pointer;
-      }
+.fps,
+.quit {
+  position: absolute;
+  top: 0;
+  height: 20px;
+  padding: 0;
+  border: none;
+  line-height: 0.8;
+  color: white;
+  user-select: none;
+}
 
-      .mode:focus,
-      .quit:focus {
-        outline: none;
-      }
+.fps {
+  right: 30px;
+  width: 40px;
+  text-align: center;
+  line-height: 1.8;
+  font-size: 12px;
+  background-color: #333;
+}
 
-      .mode {
-        left: 50%;
-        transform: translateX(-50%);
-        width: 50px;
-        background-color: chocolate;
-      }
+.quit {
+  right: 0;
+  width: 20px;
+  background-color: brown;
+  cursor: pointer;
+}
 
-      .quit {
-        right: 0;
-        width: 20px;
-        height: 20px;
-        background-color: brown;
-      }
-    </style>
-  </head>
+.quit:focus {
+  outline: none;
+}
+</style>
+</head>
 
-  <body>
-    <canvas class="canvas"></canvas>
+<body>
+<canvas class="scene"></canvas>
 
-    <button class="mode">
-      mode
-    </button>
+<div class="fps"></div>
 
-    <button class="quit">
-      x
-    </button>
-  </body>
+<button class="quit">
+  x
+</button>
+</body>
 </html>
