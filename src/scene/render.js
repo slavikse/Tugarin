@@ -5,28 +5,26 @@ requestAnimationFrame(gameLoop);
 function gameLoop(deltaTime) {
   requestAnimationFrame(gameLoop);
 
-  draw();
+  draws();
   fpsMeter(deltaTime);
 }
 
-function draw() {
-  const { clientWidth, clientHeight } = document.documentElement;
-
-  drawScene({ clientWidth, clientHeight });
-  drawPlayer({ clientWidth, clientHeight });
+function draws() {
+  clearScene();
+  drawPlayer();
   drawWalls();
 }
 
-function drawScene({ clientWidth, clientHeight }) {
+function clearScene() {
+  const { clientWidth, clientHeight } = document.documentElement;
+
   state.ctx.fillStyle = state.scene.mainColor;
   state.ctx.fillRect(0, 0, clientWidth, clientHeight);
 }
 
-function drawPlayer({ clientWidth, clientHeight }) {
-  const halfWidth = Math.round(clientWidth / 2);
-  const halfHeight = Math.round(clientHeight / 2);
-
+function drawPlayer() {
   const { cells, width, height } = state.actors.player;
+  const { halfWidth, halfHeight } = state.scene;
 
   cells.forEach((cell) => {
     state.ctx.fillStyle = cell.mainColor;
@@ -35,8 +33,8 @@ function drawPlayer({ clientWidth, clientHeight }) {
 }
 
 function drawWalls() {
-  const { cells, width, height } = state.actors.walls;
   const { center } = state.actors.player;
+  const { cells, width, height } = state.actors.walls;
 
   cells.forEach((cell) => {
     state.ctx.fillStyle = cell.mainColor;

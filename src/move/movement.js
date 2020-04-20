@@ -1,17 +1,19 @@
 // todo правила движения при столкновениях
 
-export function top() {
-  state.actors.player.center.y += state.actors.player.step;
+const { center } = state.actors.player;
+
+export function moveTop() {
+  center.y -= state.blockSize;
 }
 
-export function right() {
-  state.actors.player.center.x -= state.actors.player.step;
+export function moveRight() {
+  center.x += state.blockSize;
 }
 
-export function bottom() {
-  state.actors.player.center.y -= state.actors.player.step;
+export function moveBottom() {
+  center.y += state.blockSize;
 }
 
-export function left() {
-  state.actors.player.center.x += state.actors.player.step;
+export function moveLeft() {
+  center.x -= state.blockSize;
 }

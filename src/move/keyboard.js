@@ -1,4 +1,4 @@
-import { top, right, bottom, left } from './movement';
+import { moveTop, moveRight, moveBottom, moveLeft } from './movement';
 
 const keyCodeW = 87;
 const keyCodeD = 68;
@@ -7,7 +7,9 @@ const keyCodeA = 65;
 
 let isPressed = false;
 
-function move({ keyCode }) {
+window.addEventListener('keydown', movement);
+
+function movement({ keyCode }) {
   if (isPressed) {
     return;
   }
@@ -17,19 +19,18 @@ function move({ keyCode }) {
   }
 
   if (keyCode === keyCodeW) {
-    top();
+    moveTop();
   } else if (keyCode === keyCodeD) {
-    right();
+    moveRight();
   } else if (keyCode === keyCodeS) {
-    bottom();
+    moveBottom();
   } else if (keyCode === keyCodeA) {
-    left();
+    moveLeft();
   }
 }
 
-function stop() {
+window.addEventListener('keyup', idle);
+
+function idle() {
   isPressed = false;
 }
-
-window.addEventListener('keydown', move);
-window.addEventListener('keyup', stop);

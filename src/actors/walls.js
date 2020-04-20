@@ -1,13 +1,13 @@
 state.actors.walls = {
-  width: 20,
-  height: 20,
+  width: state.blockSize,
+  height: state.blockSize,
   cells: [],
 };
 
-for (let i = 0; i < 50; i++) {
+for (let i = 0; i < 1; i++) {
   state.actors.walls.cells.push({
-    x: Math.round(400 * i * Math.random()),
-    y: Math.round(420 * i * Math.random()),
-    mainColor: '#f00',
+    x: state.blockSize * 50,
+    y: state.blockSize * 35,
+    mainColor: '#559',
   });
 }
