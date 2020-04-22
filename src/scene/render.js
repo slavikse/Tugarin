@@ -18,26 +18,30 @@ function draws() {
 function clearScene() {
   const { clientWidth, clientHeight } = document.documentElement;
 
-  state.ctx.fillStyle = state.scene.mainColor;
+  state.ctx.fillStyle = state.scene.color;
   state.ctx.fillRect(0, 0, clientWidth, clientHeight);
 }
 
 function drawPlayer() {
-  const { cells, width, height } = state.actors.player;
-  const { halfWidth, halfHeight } = state.scene;
+  const {
+    scene,
+    player: { cells, width, height },
+  } = state;
 
   cells.forEach((cell) => {
-    state.ctx.fillStyle = cell.mainColor;
-    state.ctx.fillRect(halfWidth - cell.x, halfHeight - cell.y, width, height);
+    state.ctx.fillStyle = cell.color;
+    state.ctx.fillRect(scene.x - cell.x, scene.y - cell.y, width, height);
   });
 }
 
 function drawWalls() {
-  const { center } = state.actors.player;
-  const { cells, width, height } = state.actors.walls;
+  const {
+    walls: { cells, width, height },
+    player,
+  } = state;
 
   cells.forEach((cell) => {
-    state.ctx.fillStyle = cell.mainColor;
-    state.ctx.fillRect(cell.x - center.x, cell.y - center.y, width, height);
+    state.ctx.fillStyle = cell.color;
+    state.ctx.fillRect(cell.x - player.x, cell.y - player.y, width, height);
   });
 }

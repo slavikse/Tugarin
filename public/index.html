@@ -39,13 +39,15 @@ body {
   margin: 0;
   font-family: sans-serif;
   color: white;
-  background-color: #333;
+  background-color: #000;
 }
 
 .scene {
   display: block;
   width: 100vw;
   height: 100vh;
+  cursor: none;
+  outline: none;
 }
 
 .fps,
@@ -83,7 +85,10 @@ body {
 </head>
 
 <body>
-<canvas class="scene"></canvas>
+<canvas
+  tabindex="-1"
+  class="scene"
+></canvas>
 
 <div class="fps"></div>
 

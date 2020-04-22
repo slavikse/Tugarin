@@ -3,19 +3,19 @@ import { moveTop, moveRight, moveBottom, moveLeft } from './movement';
 window.addEventListener('keydown', ({ key }) => setKeyPressed({ key, isPressed: true }));
 window.addEventListener('keyup', ({ key }) => setKeyPressed({ key, isPressed: false }));
 
-const isKeysPressed = { w: false, d: false, s: false, a: false };
+const isKeysPressed = { w: false, a: false, s: false, d: false };
 
 function setKeyPressed({ key, isPressed }) {
-  if (['w', 'd', 's', 'a'].includes(key)) {
+  if (['w', 'a', 's', 'd'].includes(key)) {
     isKeysPressed[key] = isPressed;
   }
 }
 
-requestAnimationFrame(frame);
-
-const frameTime = 1000 / 24;
+const frameTime = 1000 / 60;
 let prevTime = 0;
 let stepTime = 0;
+
+requestAnimationFrame(frame);
 
 function frame(time) {
   requestAnimationFrame(frame);
@@ -36,6 +36,7 @@ function getDeltaTime(time) {
   return deltaTime;
 }
 
+// todo clamp при передвижении наискосок
 function movement() {
   if (isKeysPressed.w) {
     moveTop();

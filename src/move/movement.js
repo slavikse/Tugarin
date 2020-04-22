@@ -1,18 +1,17 @@
-const { center } = state.actors.player;
-const { blockSize } = state.scene;
+const { player } = state;
 
 export function moveTop() {
-  center.y -= blockSize;
+  player.y -= player.speed;
 }
 
 export function moveRight() {
-  center.x += blockSize;
+  player.x += player.speed;
 }
 
 export function moveBottom() {
-  center.y += blockSize;
+  player.y += player.speed;
 }
 
 export function moveLeft() {
-  center.x -= blockSize;
+  player.x -= player.speed;
 }
