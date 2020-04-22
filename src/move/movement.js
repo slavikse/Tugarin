@@ -1,19 +1,18 @@
-// todo правила движения при столкновениях
-
 const { center } = state.actors.player;
+const { blockSize } = state.scene;
 
 export function moveTop() {
-  center.y -= state.blockSize;
+  center.y -= blockSize;
 }
 
 export function moveRight() {
-  center.x += state.blockSize;
+  center.x += blockSize;
 }
 
 export function moveBottom() {
-  center.y += state.blockSize;
+  center.y += blockSize;
 }
 
 export function moveLeft() {
-  center.x -= state.blockSize;
+  center.x -= blockSize;
 }

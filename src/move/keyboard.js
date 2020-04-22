@@ -1,36 +1,55 @@
 import { moveTop, moveRight, moveBottom, moveLeft } from './movement';
 
-const keyCodeW = 87;
-const keyCodeD = 68;
-const keyCodeS = 83;
-const keyCodeA = 65;
+window.addEventListener('keydown', ({ key }) => setKeyPressed({ key, isPressed: true }));
+window.addEventListener('keyup', ({ key }) => setKeyPressed({ key, isPressed: false }));
 
-let isPressed = false;
+const isKeysPressed = { w: false, d: false, s: false, a: false };
 
-window.addEventListener('keydown', movement);
-
-function movement({ keyCode }) {
-  if (isPressed) {
-    return;
-  }
-
-  if ([keyCodeW, keyCodeD, keyCodeS, keyCodeA].includes(keyCode)) {
-    isPressed = true;
-  }
-
-  if (keyCode === keyCodeW) {
-    moveTop();
-  } else if (keyCode === keyCodeD) {
-    moveRight();
-  } else if (keyCode === keyCodeS) {
-    moveBottom();
-  } else if (keyCode === keyCodeA) {
-    moveLeft();
+function setKeyPressed({ key, isPressed }) {
+  if (['w', 'd', 's', 'a'].includes(key)) {
+    isKeysPressed[key] = isPressed;
   }
 }
 
-window.addEventListener('keyup', idle);
+requestAnimationFrame(frame);
 
-function idle() {
-  isPressed = false;
+const frameTime = 1000 / 24;
+let prevTime = 0;
+let stepTime = 0;
+
+function frame(time) {
+  requestAnimationFrame(frame);
+
+  stepTime += getDeltaTime(time);
+
+  if (stepTime >= frameTime) {
+    stepTime = 0;
+
+    movement();
+  }
+}
+
+function getDeltaTime(time) {
+  const deltaTime = time - prevTime;
+  prevTime = time;
+
+  return deltaTime;
+}
+
+function movement() {
+  if (isKeysPressed.w) {
+    moveTop();
+  }
+
+  if (isKeysPressed.d) {
+    moveRight();
+  }
+
+  if (isKeysPressed.s) {
+    moveBottom();
+  }
+
+  if (isKeysPressed.a) {
+    moveLeft();
+  }
 }

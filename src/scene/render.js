@@ -2,11 +2,11 @@ import { fpsMeter } from '../utils';
 
 requestAnimationFrame(gameLoop);
 
-function gameLoop(deltaTime) {
+function gameLoop(time) {
   requestAnimationFrame(gameLoop);
 
   draws();
-  fpsMeter(deltaTime);
+  fpsMeter(time);
 }
 
 function draws() {

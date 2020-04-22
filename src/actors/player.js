@@ -1,9 +1,10 @@
+const { blockSize } = state.scene;
 const mainColor = '#f50';
 
 state.actors.player = {
   center: { x: 0, y: 0 },
-  width: state.blockSize,
-  height: state.blockSize,
+  width: blockSize,
+  height: blockSize,
   cells: [
     {
       x: 0,
@@ -11,18 +12,18 @@ state.actors.player = {
       mainColor,
     },
     {
-      x: state.blockSize,
-      y: state.blockSize,
+      x: blockSize,
+      y: blockSize,
       mainColor,
     },
     {
       x: 0,
-      y: state.blockSize,
+      y: blockSize,
       mainColor,
     },
     {
-      x: state.blockSize,
-      y: state.blockSize * 2,
+      x: blockSize,
+      y: blockSize * 2,
       mainColor,
     },
   ],

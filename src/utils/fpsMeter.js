@@ -1,9 +1,7 @@
-const milliseconds = 1000;
-let previousDeltaTime = 0;
-
 const $fps = document.querySelector('.fps');
+let prevTime = 0;
 
-export default function fpsMeter(deltaTime) {
-  $fps.textContent = String(Math.round(milliseconds / (deltaTime - previousDeltaTime)));
-  previousDeltaTime = deltaTime;
+export default function fpsMeter(time) {
+  $fps.textContent = String(Math.round(1000 / (time - prevTime)));
+  prevTime = time;
 }
