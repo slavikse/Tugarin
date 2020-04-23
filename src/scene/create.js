@@ -18,6 +18,4 @@ function setSceneSize() {
 function configureContext() {
   state.ctx = $scene.getContext('2d', { alpha: false });
   state.ctx.imageSmoothingEnabled = false;
-
-  $scene.focus();
 }

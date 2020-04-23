@@ -42,58 +42,82 @@ body {
   background-color: #000;
 }
 
-.scene {
-  display: block;
-  width: 100vw;
-  height: 100vh;
-  cursor: none;
+.container {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.6);
   outline: none;
 }
 
-.fps,
-.quit {
-  position: absolute;
-  top: 0;
-  height: 20px;
-  padding: 0;
-  border: none;
+.start-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.start-menu .new-game {
+  width: 100px;
+  padding: 10px;
+  line-height: 1;
+  font-size: 20px;
+  user-select: none;
+}
+
+.start-menu .quit {
+  margin-top: 15px;
+  width: 80px;
+  user-select: none;
+}
+
+.start-menu .fps {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 12px;
   line-height: 0.8;
   color: white;
   user-select: none;
 }
 
-.fps {
-  right: 30px;
-  width: 40px;
-  text-align: center;
-  line-height: 1.8;
-  font-size: 12px;
-  background-color: #333;
-}
-
-.quit {
-  right: 0;
-  width: 20px;
-  background-color: brown;
-  cursor: pointer;
-}
-
-.quit:focus {
-  outline: none;
+.scene {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  cursor: none;
 }
 </style>
 </head>
 
 <body>
-<canvas
+<div
   tabindex="-1"
-  class="scene"
-></canvas>
+  autofocus
+  class="container"
+>
+  <div class="start-menu">
+    <button class="new-game">
+      Играть
+    </button>
 
-<div class="fps"></div>
+    <button class="quit">
+      Выйти
+    </button>
 
-<button class="quit">
-  x
-</button>
+    <div class="fps">
+      к/с: <span class="fps-counter">0</span>
+    </div>
+  </div>
+</div>
+
+<canvas class="scene"></canvas>
 </body>
 </html>

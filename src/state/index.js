@@ -1,4 +1,4 @@
-import './ctx';
+import './initial';
 import './scene';
 import './player';
 import './enemies';

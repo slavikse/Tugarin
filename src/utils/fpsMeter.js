@@ -1,4 +1,4 @@
-const $fps = document.querySelector('.fps');
+const $fps = document.querySelector('.fps .fps-counter');
 let prevTime = 0;
 
 export default function fpsMeter(time) {
