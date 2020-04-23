@@ -1,45 +1,30 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { BrowserWindow, app } from 'electron';
 
-let mainWindow;
+/* eslint-disable global-require */
+if (require('electron-squirrel-startup')) {
+  app.quit();
+}
 
-app.on('ready', configureMainWindow);
+app.on('ready', createWindow);
 
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit();
-  }
-});
-
-app.on('activate', () => {
-  if (!mainWindow) {
-    configureMainWindow();
-  }
-});
-
-function configureMainWindow() {
-  mainWindow = new BrowserWindow({
+async function createWindow() {
+  const mainWindow = new BrowserWindow({
     x: 0,
     y: 0,
     frame: false,
     thickFrame: false,
-    fullscreen: true,
     resizable: false,
+    fullscreen: true,
     webPreferences: {
       nodeIntegration: true,
     },
   });
 
-  /* eslint-disable no-undef */
-  mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
-
-  const isDevelopment = process.env.NODE_ENV === 'development';
-
-  if (isDevelopment) {
+  if (process.env.NODE_ENV === 'development') {
     mainWindow.webContents.openDevTools();
   }
 
-  // mainWindow.on('closed', () => {
-  //   mainWindow = undefined;
-  // });
+  /* eslint-disable no-undef */
+  await mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 }

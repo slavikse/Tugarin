@@ -1,7 +1,7 @@
 {
   "name": "tugarin",
   "productName": "Tugarin",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Tugarin Game",
   "main": "./.webpack/main",
   "scripts": {
@@ -16,15 +16,16 @@
   "config": {
     "forge": {
       "packagerConfig": {
-        "icon": "./public/logo.ico"
+        "icon": "./public/assets/logo.ico"
       },
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
+            "name": "Tugarin",
             "authors": "slavikse",
             "setupExe": "Tugarin.exe",
-            "setupIcon": "./public/logo.ico"
+            "setupIcon": "./public/assets/logo.ico"
           }
         }
       ],
@@ -37,7 +38,7 @@
               "entryPoints": [
                 {
                   "html": "./public/index.html",
-                  "js": "./src/renderer.js",
+                  "js": "./src/app.js",
                   "name": "main_window"
                 }
               ]
@@ -56,5 +57,7 @@
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.20.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0"
+  }
 }

@@ -33,3 +33,8 @@ function newGame() {
 
 const $quit = document.querySelector('.start-menu .quit');
 $quit.addEventListener('click', () => remote.app.quit(), { once: true });
+
+// window.addEventListener('keyup', ({ code }) => {
+//   // todo для горячих клавиш делать отмену stopPropagation
+//   console.log(code);
+// }, true);

@@ -1,13 +1,13 @@
 import movement from './movement';
 
-window.addEventListener('keydown', ({ key }) => setKeyPressed({ key, isPressed: true }), true);
-window.addEventListener('keyup', ({ key }) => setKeyPressed({ key, isPressed: false }), true);
+window.addEventListener('keydown', ({ code }) => setKeyPressed({ code, isPressed: true }));
+window.addEventListener('keyup', ({ code }) => setKeyPressed({ code, isPressed: false }));
 
-const isKeysPressed = { w: false, a: false, s: false, d: false };
+const isKeysPressed = { KeyW: false, KeyD: false, KeyS: false, KeyA: false };
 
-function setKeyPressed({ key, isPressed }) {
-  if (['w', 'a', 's', 'd'].includes(key)) {
-    isKeysPressed[key] = isPressed;
+function setKeyPressed({ code, isPressed }) {
+  if (['KeyW', 'KeyD', 'KeyS', 'KeyA'].includes(code)) {
+    isKeysPressed[code] = isPressed;
   }
 }
 
@@ -25,8 +25,6 @@ function frame(time) {
 
     if (stepTime >= frameTime) {
       stepTime = 0;
-
-      // console.log('movement', isKeysPressed);
 
       movement(isKeysPressed);
     }

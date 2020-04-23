@@ -1,35 +1,19 @@
 const { player } = state;
 
 export default function movement(isKeysPressed) {
-  if (isKeysPressed.w) {
-    moveTop();
+  if (isKeysPressed.KeyW) {
+    player.y -= player.speed;
   }
 
-  if (isKeysPressed.d) {
-    moveRight();
+  if (isKeysPressed.KeyD) {
+    player.x += player.speed;
   }
 
-  if (isKeysPressed.s) {
-    moveBottom();
+  if (isKeysPressed.KeyS) {
+    player.y += player.speed;
   }
 
-  if (isKeysPressed.a) {
-    moveLeft();
+  if (isKeysPressed.KeyA) {
+    player.x -= player.speed;
   }
-}
-
-function moveTop() {
-  player.y -= player.speed;
-}
-
-function moveRight() {
-  player.x += player.speed;
-}
-
-function moveBottom() {
-  player.y += player.speed;
-}
-
-function moveLeft() {
-  player.x -= player.speed;
 }
