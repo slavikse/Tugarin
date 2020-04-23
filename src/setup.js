@@ -8,6 +8,8 @@ if (require('electron-squirrel-startup')) {
 
 app.on('ready', ready);
 
+const isDevelopment = process.env.NODE_ENV === 'development';
+
 async function ready() {
   disableBrowserHotKeys();
 
@@ -23,7 +25,7 @@ async function ready() {
     },
   });
 
-  if (process.env.NODE_ENV === 'development') {
+  if (isDevelopment) {
     mainWindow.webContents.openDevTools();
   }
 
@@ -33,12 +35,15 @@ async function ready() {
 
 // Быстрые клавиши в Chrome: https://support.google.com/chrome/answer/157179?hl=ru
 function disableBrowserHotKeys() {
-  globalShortcut.register('Ctrl+W', () => {});
-  globalShortcut.register('Ctrl+R', () => {});
   globalShortcut.register('Ctrl+Shift+R', () => {});
   globalShortcut.register('Ctrl+Shift+I', () => {});
   globalShortcut.register('Ctrl+M', () => {});
   globalShortcut.register('Ctrl+-', () => {});
   globalShortcut.register('Ctrl+Shift+Plus', () => {});
   globalShortcut.register('Alt+Space', () => {});
+
+  if (!isDevelopment) {
+    globalShortcut.register('Ctrl+R', () => {});
+    globalShortcut.register('Ctrl+W', () => {});
+  }
 }

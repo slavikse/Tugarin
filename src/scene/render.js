@@ -11,8 +11,8 @@ function gameLoop(time) {
 
 function draws() {
   clearScene();
-  drawPlayer();
   drawWalls();
+  drawPlayer();
 
   const cells = checkingIntersections();
 
@@ -30,12 +30,17 @@ function clearScene() {
   state.ctx.fillRect(0, 0, clientWidth, clientHeight);
 }
 
-function drawPlayer() {
-  const {
-    scene,
-    player: { cells, width, height },
-  } = state;
+function drawWalls() {
+  const { walls: { cells, width, height }, player } = state;
 
+  cells.forEach((cell) => {
+    state.ctx.fillStyle = cell.color;
+    state.ctx.fillRect(cell.x - player.x, cell.y - player.y, width, height);
+  });
+}
+
+function drawPlayer() {
+  const { scene, player: { cells, width, height } } = state;
   const c = ['#0ff', '#f00'];
 
   cells.forEach((cell, index) => {
@@ -44,25 +49,13 @@ function drawPlayer() {
   });
 }
 
-function drawWalls() {
-  const {
-    walls: { cells, width, height },
-    player,
-  } = state;
-
-  cells.forEach((cell) => {
-    state.ctx.fillStyle = cell.color;
-    state.ctx.fillRect(cell.x - player.x, cell.y - player.y, width, height);
-  });
-}
-
 function checkingIntersections() {
   return state.player.cells.filter((playerCell) => state.walls.cells
     .find((wallCell) => intersects(playerCell, wallCell)));
 }
 
-// левый верхний и правый нижний углы первого (x0, y0) - (x1, y1)
-// левый верхний и правый нижний углы второго (x2, y2) - (x3, y3)
+// Левый верхний и правый нижний углы первого (x0, y0) - (x1, y1)
+// Левый верхний и правый нижний углы второго (x2, y2) - (x3, y3)
 function intersects(playerCell, wallsCell) {
   const x0 = state.scene.x - playerCell.x;
   const y0 = state.scene.y - playerCell.y;
