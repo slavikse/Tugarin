@@ -31,8 +31,14 @@ async function ready() {
   await mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 }
 
+// Быстрые клавиши в Chrome: https://support.google.com/chrome/answer/157179?hl=ru
 function disableBrowserHotKeys() {
   globalShortcut.register('Ctrl+W', () => {});
   globalShortcut.register('Ctrl+R', () => {});
+  globalShortcut.register('Ctrl+Shift+R', () => {});
+  globalShortcut.register('Ctrl+Shift+I', () => {});
   globalShortcut.register('Ctrl+M', () => {});
+  globalShortcut.register('Ctrl+-', () => {});
+  globalShortcut.register('Ctrl+Shift+Plus', () => {});
+  globalShortcut.register('Alt+Space', () => {});
 }
