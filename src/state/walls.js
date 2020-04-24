@@ -1,19 +1,19 @@
 const size = 2 * 8;
+const color = '#559';
 
-window.state.walls = {
+window.state.wall = {
   width: size,
   height: size,
   cells: [],
 };
 
-// todo
+// todo умная генерация
 for (let i = 0; i < 100; i++) {
-  state.walls.cells.push({
+  state.wall.cells.push({
     id: i,
+    type: 'wall',
     x: Math.round(i * 20 * Math.random()) + 1000,
     y: Math.round(i * 20 * Math.random()) + 800,
-    // x: 1900,
-    // y: 1400,
-    color: '#559',
+    color,
   });
 }

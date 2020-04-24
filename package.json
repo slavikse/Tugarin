@@ -1,9 +1,9 @@
 {
   "name": "tugarin",
   "productName": "Tugarin",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Tugarin Game",
-  "main": ".webpack/main",
+  "main": "./.webpack/main",
   "scripts": {
     "serve": "electron-forge start",
     "build": "electron-forge publish"
@@ -14,7 +14,7 @@
   },
   "license": "MIT",
   "config": {
-    "forge": "forge.config.js"
+    "forge": "./forge.config.js"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.50",

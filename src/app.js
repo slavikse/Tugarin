@@ -5,31 +5,32 @@ import './state';
 import './scene';
 import './move';
 
-const $container = document.querySelector('.container');
-const $newGame = $container.querySelector('.start-menu .new-game');
+const $app = document.querySelector('.app');
 
-window.addEventListener('keydown', ({ key }) => {
-  if (key === 'Escape') {
-    if (['flex', ''].includes($container.style.display)) {
-      $container.style.display = 'none';
+window.addEventListener('keydown', ({ code }) => {
+  if (code === 'Escape') {
+    if (['flex', ''].includes($app.style.display)) {
+      $app.style.display = 'none';
     } else {
-      $container.style.display = 'flex';
+      $app.style.display = 'flex';
     }
   }
 });
 
-$newGame.addEventListener('click', newGame);
-window.addEventListener('keydown', ({ key }) => {
-  if (key === 'Enter') {
-    newGame();
+const $newGame = $app.querySelector('.menu .new-game');
+$newGame.addEventListener('click', play);
+
+window.addEventListener('keydown', ({ code }) => {
+  if (code === 'Enter') {
+    play();
   }
 });
 
-function newGame() {
-  $container.style.display = 'none';
+function play() {
+  $app.style.display = 'none';
   state.player.isPlaying = true;
   // todo сброс некоторых статусов
 }
 
-const $quit = document.querySelector('.start-menu .quit');
+const $quit = document.querySelector('.menu .quit');
 $quit.addEventListener('click', () => remote.app.quit(), { once: true });

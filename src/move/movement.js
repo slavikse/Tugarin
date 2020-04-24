@@ -1,6 +1,6 @@
-const { player } = state;
+const { player, player: { isKeysPressed } } = state;
 
-export default function movement(isKeysPressed) {
+export default function movement() {
   if (isKeysPressed.KeyW) {
     player.y -= player.speed;
   }

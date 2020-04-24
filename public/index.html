@@ -33,9 +33,15 @@ body {
   background-color: #000;
 }
 
-.container {
+.scene {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  cursor: none;
+}
+
+.app {
   position: absolute;
-  z-index: 2;
   top: 0;
   right: 0;
   bottom: 0;
@@ -44,72 +50,69 @@ body {
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.6);
-  outline: none;
 }
 
-.start-menu {
+.app .menu {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.start-menu .new-game {
-  width: 100px;
-  padding: 10px;
   line-height: 1;
-  font-size: 20px;
   user-select: none;
 }
 
-.start-menu .quit {
+.app .menu .new-game {
+  width: 100px;
+  padding: 10px;
+  font-size: 20px;
+}
+
+.app .menu .quit {
   margin-top: 15px;
   width: 80px;
   font-size: 16px;
-  user-select: none;
 }
 
-.start-menu .fps {
-  margin-top: 15px;
+.fps {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 2px;
   text-align: center;
   font-size: 12px;
-  line-height: 0.8;
+  line-height: 1;
   color: white;
+  background-color: brown;
   user-select: none;
-}
-
-.scene {
-  position: relative;
-  z-index: 1;
-  display: block;
-  width: 100vw;
-  height: 100vh;
-  cursor: none;
 }
 </style>
 </head>
 
 <body>
-<div
-  tabindex="-1"
-  autofocus
-  class="container"
->
-  <div class="start-menu">
+<canvas class="scene"></canvas>
+
+<div class="app">
+  <div class="menu">
+    <!-- todo будет только когда игрок уже начал новую игру -->
+    <button class="resume">
+      Продолжить
+    </button>
+
+    <!-- todo сброс состояния игры -->
     <button class="new-game">
-      Играть
+      Новая игра
     </button>
 
     <button class="quit">
       Выйти
     </button>
-
-    <div class="fps">
-      к/с: <span class="fps-counter">0</span>
-    </div>
   </div>
 </div>
 
-<canvas class="scene"></canvas>
+<!-- Быстрая клавиша: F1 -->
+<div class="fps js-fps" hidden>
+  <div>к/с <span class="js-fps">000</span></div>
+  <div>за <span class="js-time">0.00</span></div>
+</div>
 </body>
 </html>

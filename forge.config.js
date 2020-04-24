@@ -1,6 +1,6 @@
 module.exports = {
   packagerConfig: {
-    icon: 'public/assets/logo.ico',
+    icon: './public/assets/logo.ico',
   },
   makers: [
     {
@@ -9,7 +9,7 @@ module.exports = {
         name: 'Tugarin',
         authors: 'slavikse',
         setupExe: 'Tugarin.exe',
-        setupIcon: 'public/assets/logo.ico',
+        setupIcon: './public/assets/logo.ico',
       },
     },
   ],
@@ -17,7 +17,7 @@ module.exports = {
     [
       '@electron-forge/plugin-webpack',
       {
-        mainConfig: 'webpack.config.js',
+        mainConfig: './webpack.config.js',
         renderer: {
           entryPoints: [
             {
