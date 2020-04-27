@@ -1,17 +1,34 @@
+import { basicSpeed, maxSpeed } from './const';
+
 const { player } = state;
 
-export default function accelerationSpeed({ basicSpeed, maxSpeed }) {
+export default function accelerationSpeed() {
   player.keysPressed.forEach((key) => {
-    if (player.directionsSpeeds[key] === 0) {
-      player.directionsSpeeds[key] = basicSpeed * 8;
+    let copiedMaxSpeed = maxSpeed;
+
+    if (player.keysPressed.length === 2) {
+      copiedMaxSpeed *= 0.85;
     }
 
-    if (player.directionsSpeeds[key] < maxSpeed) {
-      player.directionsSpeeds[key] += basicSpeed;
-
-      if (player.directionsSpeeds[key] > maxSpeed) {
-        player.directionsSpeeds[key] = maxSpeed;
-      }
-    }
+    initialAcceleration(key);
+    increaseSpeed({ key, copiedMaxSpeed });
   });
+}
+
+function initialAcceleration(key) {
+  if (player.directionsSpeeds[key] === 0) {
+    player.directionsSpeeds[key] = basicSpeed * 8;
+  }
+}
+
+function increaseSpeed({ key, copiedMaxSpeed }) {
+  const directionSpeed = player.directionsSpeeds[key];
+
+  if (directionSpeed < copiedMaxSpeed) {
+    player.directionsSpeeds[key] += basicSpeed;
+  }
+
+  if (directionSpeed > copiedMaxSpeed) {
+    player.directionsSpeeds[key] = copiedMaxSpeed;
+  }
 }

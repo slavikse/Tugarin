@@ -1,8 +1,8 @@
 const { player } = state;
 
 export default {
-  W({ deltaTime, value }) { player.y -= deltaTime * value; },
-  A({ deltaTime, value }) { player.x -= deltaTime * value; },
-  S({ deltaTime, value }) { player.y += deltaTime * value; },
-  D({ deltaTime, value }) { player.x += deltaTime * value; },
+  W({ value, deltaTime }) { player.y -= value * deltaTime; },
+  A({ value, deltaTime }) { player.x -= value * deltaTime; },
+  S({ value, deltaTime }) { player.y += value * deltaTime; },
+  D({ value, deltaTime }) { player.x += value * deltaTime; },
 };
