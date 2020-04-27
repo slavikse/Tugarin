@@ -1,5 +1,5 @@
 const size = 2 * 8;
-const color = '#559';
+const color = '#822';
 
 window.state.wall = {
   width: size,
@@ -7,11 +7,13 @@ window.state.wall = {
   cells: [],
 };
 
+// todo стена не должна пропускать игрока.
+
 // todo умная генерация
-for (let i = 0; i < 100; i++) {
+// todo не создавать блоки слишком близко с игроком.
+for (let i = 0; i < 20; i++) {
   state.wall.cells.push({
     id: i,
-    type: 'wall',
     x: Math.round(i * 20 * Math.random()) + 1000,
     y: Math.round(i * 20 * Math.random()) + 800,
     color,

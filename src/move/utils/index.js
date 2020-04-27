@@ -1,3 +1,4 @@
 import getDeltaTime from './getDeltaTime';
+import movementInDirection from './movementInDirection';
 
-export { getDeltaTime };
+export { getDeltaTime, movementInDirection };

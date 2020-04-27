@@ -1,19 +1,15 @@
-const { player, player: { isKeysPressed } } = state;
+import accelerationSpeed from './accelerationSpeed';
+import assignAcceleration from './assignAcceleration';
 
-export default function movement() {
-  if (isKeysPressed.KeyW) {
-    player.y -= player.speed;
+const { player } = state;
+
+const basicSpeed = 20;
+const maxSpeed = basicSpeed * 30;
+
+export default function movement(time) {
+  if (player.keysPressed.length > 0) {
+    accelerationSpeed({ basicSpeed, maxSpeed });
   }
 
-  if (isKeysPressed.KeyD) {
-    player.x += player.speed;
-  }
-
-  if (isKeysPressed.KeyS) {
-    player.y += player.speed;
-  }
-
-  if (isKeysPressed.KeyA) {
-    player.x -= player.speed;
-  }
+  assignAcceleration({ time, basicSpeed });
 }

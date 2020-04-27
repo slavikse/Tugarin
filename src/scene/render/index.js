@@ -1,3 +1,13 @@
-import gameLoop from './gameLoop';
+import { fps } from './utils';
+import redraw from './redraw';
 
-requestAnimationFrame(gameLoop);
+state.scene.tasks.push((time) => {
+  if (state.player.isPlaying) {
+    fps.execution.start();
+
+    redraw();
+
+    fps.execution.end();
+    fps.measure.fps(time);
+  }
+});

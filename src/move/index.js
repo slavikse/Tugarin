@@ -1,4 +1,8 @@
-import './listeners';
-import gameLoop from './gameLoop';
+import './control';
+import movement from './movement';
 
-requestAnimationFrame(gameLoop);
+state.scene.tasks.push((time) => {
+  if (state.player.isPlaying) {
+    movement(time);
+  }
+});

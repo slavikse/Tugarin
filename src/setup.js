@@ -8,7 +8,8 @@ if (require('electron-squirrel-startup')) {
 
 app.on('ready', ready);
 
-const isDevelopment = process.env.NODE_ENV === 'development';
+// development | production
+const environment = 'development';
 
 async function ready() {
   disableBrowserHotKeys();
@@ -25,7 +26,7 @@ async function ready() {
     },
   });
 
-  if (isDevelopment) {
+  if (environment !== 'production') {
     mainWindow.webContents.openDevTools();
   }
 
@@ -42,8 +43,16 @@ function disableBrowserHotKeys() {
   globalShortcut.register('Ctrl+Shift+Plus', () => {});
   globalShortcut.register('Alt+Space', () => {});
 
-  if (!isDevelopment) {
+  if (environment === 'production') {
     globalShortcut.register('Ctrl+R', () => {});
     globalShortcut.register('Ctrl+W', () => {});
   }
 }
+
+process.on('uncaughtException', (err) => {
+  console.error('uncaughtException', err);
+});
+
+process.on('SIGTERM', () => {
+  process.exit(0);
+});
