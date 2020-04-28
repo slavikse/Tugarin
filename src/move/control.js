@@ -13,7 +13,7 @@ function handle({ code, isPressed }) {
       if (keyIndex === -1) {
         state.player.keysPressed.push(key);
       }
-    } else {
+    } else if (keyIndex !== -1) {
       state.player.keysPressed.splice(keyIndex, 1);
     }
   }

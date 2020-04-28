@@ -1,6 +1,6 @@
 export default function destroyCell(cell) {
-  const cellTyped = state[cell.type];
-  const cellIndex = cellTyped.cells.findIndex(({ id }) => id === cell.id);
+  const { cells } = state[cell.type];
+  const index = cells.findIndex(({ id }) => id === cell.id);
 
-  cellTyped.cells.splice(cellIndex, 1);
+  cells.splice(index, 1);
 }

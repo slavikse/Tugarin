@@ -8,9 +8,9 @@ export default function cellsIntersections() {
     let intersected;
 
     if (wallCell) {
-      intersected = { cell: wallCell, playerCell };
+      intersected = { playerCell, cell: wallCell };
     } else if (cellCell) {
-      intersected = { cell: cellCell, playerCell };
+      intersected = { playerCell, cell: cellCell };
     }
 
     return intersected;

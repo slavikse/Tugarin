@@ -1,5 +1,5 @@
 import cellsIntersections from './cellsIntersections';
-import addingCellToPlayer from './addingCellToPlayer';
+import addCellToPlayer from './addCellToPlayer';
 import destroyCell from './destroyCell';
 
 export default function processing() {
@@ -7,7 +7,7 @@ export default function processing() {
     if (cell.type === 'wall') {
       destroyCell(playerCell);
     } else if (cell.type === 'cell') {
-      addingCellToPlayer({ playerCell, cell });
+      addCellToPlayer(cell);
     }
   });
 }
