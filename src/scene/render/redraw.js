@@ -7,6 +7,7 @@ import { hasRestarted } from './utils';
 export default function redraw() {
   clearScene();
 
+  drawActors('spike');
   drawActors('wall');
   drawActors('cell');
   drawPlayer();
