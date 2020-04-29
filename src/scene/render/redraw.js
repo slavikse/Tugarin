@@ -1,11 +1,10 @@
 import clearScene from './clearScene';
 import drawActors from './drawActors';
 import drawPlayer from './drawPlayer';
-import { throttling } from './utils';
 import processing from './processing';
 import hasRestarted from './hasRestarted';
 
-export default function redraw(time) {
+export default function redraw() {
   clearScene();
 
   drawActors('wall');
@@ -14,9 +13,6 @@ export default function redraw(time) {
 
   drawPlayer();
 
-  if (throttling(time)) {
-    processing();
-  }
-
+  processing();
   hasRestarted();
 }
