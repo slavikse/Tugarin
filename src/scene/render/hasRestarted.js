@@ -1,7 +1,9 @@
 const $app = document.querySelector('.app');
 
 export default function hasRestarted() {
-  if (!state.player.cells[0]) {
+  const [cell] = state.player.cells;
+
+  if (!cell || !cell.isMain) {
     $app.style.display = 'flex';
   }
 }

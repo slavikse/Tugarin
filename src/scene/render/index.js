@@ -5,7 +5,7 @@ state.scene.tasks.push((time) => {
   if (state.player.isPlaying) {
     fps.execution.start();
 
-    redraw();
+    redraw(time);
 
     fps.execution.end();
     fps.measure.fps(time);

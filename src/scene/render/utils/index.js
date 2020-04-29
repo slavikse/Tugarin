@@ -1,4 +1,4 @@
+import throttling from './throttling';
 import * as fps from './fps';
-import hasRestarted from './hasRestarted';
 
-export { fps, hasRestarted };
+export { throttling, fps };
