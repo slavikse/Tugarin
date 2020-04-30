@@ -2,7 +2,7 @@ import { nanoid } from 'nanoid';
 import { movementInDirection } from '../utils';
 
 const type = 'shot';
-const color = '#cf0';
+const color = '#ff0';
 
 window.state.shot = {
   addCell({ side }) { this.cells.push(createCell(side)); },
@@ -11,7 +11,7 @@ window.state.shot = {
 
 const { scene, shot, player } = state;
 const size = state.size / 2;
-const speed = 50;
+const speed = 80;
 
 // todo стрелять из блока оружия. т.е. координаты относильно него.
 function createCell(side) {
