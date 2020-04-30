@@ -1,9 +1,9 @@
 import { basicSpeed } from './const';
-import { movementInDirection } from './utils';
+import { movementInDirection } from '../utils';
 
-const { player: { directionsSpeeds } } = state;
+const { player, player: { directionsSpeeds } } = state;
 
-export default function decelerationSpeed({ key, value, deltaTime }) {
+export default function decelerationSpeed({ key, value }) {
   let result = value - (basicSpeed * 2);
 
   if (result < 0) {
@@ -11,5 +11,5 @@ export default function decelerationSpeed({ key, value, deltaTime }) {
   }
 
   directionsSpeeds[key] = result;
-  movementInDirection[key]({ value: result, deltaTime });
+  movementInDirection[key]({ actor: player, value: result });
 }

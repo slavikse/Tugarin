@@ -2,11 +2,11 @@ import './control';
 import accelerationSpeed from './accelerationSpeed';
 import assignAcceleration from './assignAcceleration';
 
-const { player } = state;
+const { scene: { tasks }, player, player: { keysPressed } } = state;
 
-state.scene.tasks.push((time) => {
-  if (state.player.isPlaying) {
-    if (player.keysPressed.length > 0) {
+tasks.push((time) => {
+  if (player.isPlaying) {
+    if (keysPressed.length > 0) {
       accelerationSpeed();
     }
 

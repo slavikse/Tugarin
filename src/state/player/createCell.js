@@ -1,7 +1,7 @@
 import { nanoid } from 'nanoid';
 
 const mainColor = '#0f0';
-const color = '#090';
+const color = '#050';
 
 export default function createCell(cell) {
   cell.id = nanoid();

@@ -1,11 +1,15 @@
-import { fps } from './utils';
+import { fps, setDeltaTime, hasRestarted } from './utils';
 import redraw from './redraw';
 
-state.scene.tasks.push((time) => {
-  if (state.player.isPlaying) {
+const { scene, player } = state;
+
+scene.tasks.push((time) => {
+  if (player.isPlaying) {
     fps.execution.start();
 
-    redraw(time);
+    setDeltaTime(time);
+    redraw();
+    hasRestarted();
 
     fps.execution.end();
     fps.measure.count(time);
