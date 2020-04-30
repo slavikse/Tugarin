@@ -2,7 +2,7 @@ import clearScene from './clearScene';
 import drawActors from './drawActors';
 import drawPlayer from './drawPlayer';
 import processing from './processing';
-import hasRestarted from './hasRestarted';
+import { hasRestarted } from './utils';
 
 export default function redraw() {
   clearScene();

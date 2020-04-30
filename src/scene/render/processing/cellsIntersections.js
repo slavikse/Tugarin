@@ -1,9 +1,11 @@
 import hasIntersected from './hasIntersected';
 
+const { player, spike, cell } = state;
+
 export default function cellsIntersections() {
-  return state.player.cells.map((playerCell) => {
-    const spikeCell = state.spike.cells.find((cell) => hasIntersected({ playerCell, cell }));
-    const cellCell = state.cell.cells.find((cell) => hasIntersected({ playerCell, cell }));
+  return player.cells.map((playerCell) => {
+    const spikeCell = spike.cells.find((c) => hasIntersected({ playerCell, cell: c }));
+    const cellCell = cell.cells.find((c) => hasIntersected({ playerCell, cell: c }));
 
     let intersected;
 

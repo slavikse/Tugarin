@@ -1,4 +1,4 @@
 window.state = {
   ctx: {},
-  blockSize: 2 * 8,
+  size: 2 * 10,
 };

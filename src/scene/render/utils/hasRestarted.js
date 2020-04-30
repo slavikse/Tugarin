@@ -5,5 +5,7 @@ export default function hasRestarted() {
 
   if (!cell || !cell.isMain) {
     $app.style.display = 'flex';
+
+    // todo событие проигрыша.
   }
 }

@@ -3,6 +3,6 @@ export default function drawPlayer() {
 
   cells.forEach((cell) => {
     state.ctx.fillStyle = cell.color;
-    state.ctx.fillRect(scene.x - cell.x, scene.y - cell.y, cell.width, cell.height);
+    state.ctx.fillRect(scene.x - cell.x, scene.y - cell.y, cell.size, cell.size);
   });
 }

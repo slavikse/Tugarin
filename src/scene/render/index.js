@@ -8,6 +8,6 @@ state.scene.tasks.push((time) => {
     redraw(time);
 
     fps.execution.end();
-    fps.measure.fps(time);
+    fps.measure.count(time);
   }
 });

@@ -12,8 +12,7 @@ for (let i = 0; i < 1000; i++) {
     x: Math.round(i * 30 * Math.random()) + 1000,
     y: Math.round(i * 30 * Math.random()) + 800,
     type: 'cell',
-    width: state.blockSize,
-    height: state.blockSize,
+    size: state.size,
     color,
   });
 }

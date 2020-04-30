@@ -3,7 +3,7 @@ import { remote } from 'electron';
 
 import './state';
 import './scene';
-import './move';
+import './movement';
 
 const $app = document.querySelector('.app');
 

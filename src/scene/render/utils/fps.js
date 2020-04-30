@@ -10,7 +10,7 @@ const measure = {
   $fpsCounter: document.querySelector('.fps .js-fps'),
   previousTime: 0,
 
-  fps(time) {
+  count(time) {
     this.$fpsCounter.textContent = String(Math.round(1000 / (time - this.previousTime)));
     this.previousTime = time;
   },

@@ -1,7 +1,7 @@
-import './initial';
+import './common';
 import './scene';
 import './player';
 import './enemy';
-import './spike';
 import './wall';
+import './spike';
 import './cell';

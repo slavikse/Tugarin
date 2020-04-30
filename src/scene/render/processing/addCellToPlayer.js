@@ -1,11 +1,12 @@
 import destroyCell from './destroyCell';
-import { addCell } from '../../../state/player/state';
+
+const { scene, player } = state;
 
 export default function addCellToPlayer(cell) {
   destroyCell(cell);
 
-  cell.x = -Math.round(cell.x - state.scene.x - state.player.x);
-  cell.y = -Math.round(cell.y - state.scene.y - state.player.y);
+  cell.x = -Math.round(cell.x - scene.x - player.x);
+  cell.y = -Math.round(cell.y - scene.y - player.y);
 
-  addCell(cell);
+  player.addCell(cell);
 }
