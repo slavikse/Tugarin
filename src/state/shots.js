@@ -1,33 +1,54 @@
 import { nanoid } from 'nanoid';
+import { maxSpeed } from '../movement/const';
 import { movementInDirection } from '../utils';
 
 const type = 'shot';
 const color = '#ff0';
 
 window.state.shot = {
-  addCell({ side }) { this.cells.push(createCell(side)); },
+  addCell({ direction, playerSpeed }) { this.cells.push(createCell({ direction, playerSpeed })); },
   cells: [],
 };
 
-const { scene, shot, player } = state;
-const size = state.size / 2;
-const speed = 80;
+// todo рефакторинг
 
-// todo стрелять из блока оружия. т.е. координаты относильно него.
-function createCell(side) {
+const { scene, player, shot } = state;
+const size = 10;
+
+// todo стрелять из блока оружия. т.е. координаты относительно этого самого блока.
+function createCell({ direction, playerSpeed }) {
   return {
     id: nanoid(),
-    x: scene.x + player.x + (size / 2),
-    y: scene.y + player.y + (size / 2),
     type,
+    x: scene.center.x + player.x + size,
+    y: scene.center.y + player.y + size,
+    direction,
+    playerSpeed,
     size,
     color,
-    side,
   };
 }
 
+// todo
 scene.tasks.push(() => {
-  shot.cells.forEach((cell) => {
-    movementInDirection[cell.side]({ actor: cell, value: size * speed });
+  shot.cells.forEach((cell, index, cells) => {
+    const { clientWidth, clientHeight } = document.documentElement;
+
+    if (
+      cell.x < player.x
+      || cell.y < player.y
+      || cell.x > player.x + clientWidth
+      || cell.y > player.y + clientHeight
+    ) {
+      cells.splice(index, 1);
+      return;
+    }
+
+    const { direction, playerSpeed } = cell;
+
+    movementInDirection[direction]({
+      actor: cell,
+      value: playerSpeed + maxSpeed * 1.2,
+    });
   });
 });

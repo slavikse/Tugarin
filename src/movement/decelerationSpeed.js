@@ -4,7 +4,7 @@ import { movementInDirection } from '../utils';
 const { player, player: { directionsSpeeds } } = state;
 
 export default function decelerationSpeed({ key, value }) {
-  let result = value - (basicSpeed * 2);
+  let result = value - (basicSpeed * 1.8);
 
   if (result < 0) {
     result = 0;

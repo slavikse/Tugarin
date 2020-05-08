@@ -1,6 +1,5 @@
 window.state.scene = {
-  x: 0,
-  y: 0,
+  center: { x: 0, y: 0 },
   deltaTime: performance.now(),
   color: '#000',
   tasks: [],
@@ -14,8 +13,8 @@ window.addEventListener('resize', setSceneCenter);
 function setSceneCenter() {
   const { clientWidth, clientHeight } = document.documentElement;
 
-  scene.x = Math.round(clientWidth / 2);
-  scene.y = Math.round(clientHeight / 2);
+  scene.center.x = Math.round(clientWidth / 2);
+  scene.center.y = Math.round(clientHeight / 2);
 }
 
 requestAnimationFrame(gameLoop);

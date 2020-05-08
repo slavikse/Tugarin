@@ -1,8 +1,8 @@
 export default function drawActors(actor) {
-  const { player, [actor]: { cells } } = state;
+  const { ctx, player, [actor]: { cells } } = state;
 
   cells.forEach((cell) => {
-    state.ctx.fillStyle = cell.color;
-    state.ctx.fillRect(cell.x - player.x, cell.y - player.y, cell.size, cell.size);
+    ctx.fillStyle = cell.color;
+    ctx.fillRect(cell.x - player.x, cell.y - player.y, cell.size, cell.size);
   });
 }

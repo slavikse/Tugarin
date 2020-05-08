@@ -7,10 +7,10 @@ window.state.cell = {
   cells: [],
 };
 
-const { cell, size } = state;
+const size = 20;
 
 for (let i = 0; i < 1000; i++) {
-  cell.cells.push({
+  state.cell.cells.push({
     id: nanoid(),
     x: Math.round(i * 30 * Math.random()) + 1000,
     y: Math.round(i * 30 * Math.random()) + 800,

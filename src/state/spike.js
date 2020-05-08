@@ -7,10 +7,10 @@ window.state.spike = {
   cells: [],
 };
 
-const { spike, size } = state;
+const size = 20;
 
 for (let i = 0; i < 200; i++) {
-  spike.cells.push({
+  state.spike.cells.push({
     id: nanoid(),
     x: Math.round(i * 50 * Math.random()) + 1000,
     y: Math.round(i * 50 * Math.random()) + 800,

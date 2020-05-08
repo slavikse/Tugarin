@@ -1,8 +1,8 @@
-export default function drawPlayer() {
-  const { scene, player: { cells } } = state;
+const { ctx, scene, player: { cells } } = state;
 
+export default function drawPlayer() {
   cells.forEach((cell) => {
-    state.ctx.fillStyle = cell.color;
-    state.ctx.fillRect(scene.x - cell.x, scene.y - cell.y, cell.size, cell.size);
+    ctx.fillStyle = cell.color;
+    ctx.fillRect(scene.center.x - cell.x, scene.center.y - cell.y, cell.size, cell.size);
   });
 }

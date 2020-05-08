@@ -1,6 +1,6 @@
 import createCell from './createCell';
 
-const { size } = state;
+const size = 40;
 
 window.state.player = {
   x: 0,

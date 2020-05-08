@@ -3,8 +3,8 @@ const { scene, player } = state;
 // Левый верхний и правый нижний углы первого (x0, y0) - (x1, y1)
 // Левый верхний и правый нижний углы второго (x2, y2) - (x3, y3)
 export default function hasIntersected({ playerCell, cell }) {
-  const x0 = scene.x - playerCell.x;
-  const y0 = scene.y - playerCell.y;
+  const x0 = scene.center.x - playerCell.x;
+  const y0 = scene.center.y - playerCell.y;
 
   const x1 = x0 + playerCell.size;
   const y1 = y0 + playerCell.size;

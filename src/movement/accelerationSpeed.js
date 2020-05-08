@@ -17,7 +17,7 @@ export default function accelerationSpeed() {
 
 function initialAcceleration(key) {
   if (directionsSpeeds[key] === 0) {
-    directionsSpeeds[key] = basicSpeed * 8;
+    directionsSpeeds[key] = basicSpeed * 9;
   }
 }
 
