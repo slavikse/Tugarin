@@ -20,5 +20,6 @@ export default function hasIntersected({ playerCell, cell }) {
   // Первый ниже Второго || Первый выше Второго.
   const exp2 = y0 > y3 || y1 < y2;
 
+  // Когда было пересечение, то все выражения должны быть false.
   return !(exp1 || exp2);
 }

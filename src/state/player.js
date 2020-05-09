@@ -1,5 +1,7 @@
-import createCell from './createCell';
+import { nanoid } from 'nanoid';
 
+const mainColor = '#0f0';
+const color = '#050';
 const size = 40;
 
 window.state.player = {
@@ -20,8 +22,26 @@ window.state.player = {
   ],
 };
 
+window.addEventListener('resize', setCenter);
+setCenter();
+
+function setCenter() {
+  const { clientWidth, clientHeight } = document.documentElement;
+
+  state.player.x = Math.round(clientWidth / 2);
+  state.player.y = Math.round(clientHeight / 2);
+}
+
 const { player: { cells } } = state;
 
 cells.forEach((cell, index) => {
   cells[index] = createCell(cell);
 });
+
+function createCell(cell) {
+  cell.id = nanoid();
+  cell.type = 'player';
+  cell.color = cell.isMain ? mainColor : color;
+
+  return cell;
+}

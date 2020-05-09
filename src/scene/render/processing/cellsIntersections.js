@@ -1,23 +1,23 @@
 import hasIntersected from './hasIntersected';
 
-const { player, spike, cell, wall } = state;
+const cells = [].concat(
+  state.spike.cells,
+  state.cell.cells,
+  state.wall.cells,
+);
 
 export default function cellsIntersections() {
-  return player.cells.map((playerCell) => {
-    const spikeCell = spike.cells.find((c) => hasIntersected({ playerCell, cell: c }));
-    const cellCell = cell.cells.find((c) => hasIntersected({ playerCell, cell: c }));
-    const wallCell = wall.cells.find((c) => hasIntersected({ playerCell, cell: c }));
+  const intersects = [];
 
-    let intersected;
+  state.player.cells.forEach((playerCell) => {
+    for (let i = 0; i < cells.length - 1; i += 1) {
+      const isIntersect = hasIntersected({ playerCell, cell: cells[i] });
 
-    if (spikeCell) {
-      intersected = { playerCell, cell: spikeCell };
-    } else if (cellCell) {
-      intersected = { playerCell, cell: cellCell };
-    } else if (wallCell) {
-      intersected = { playerCell, cell: wallCell };
+      if (isIntersect) {
+        intersects.push({ playerCell, cell: cells[i] });
+      }
     }
+  });
 
-    return intersected;
-  }).filter(Boolean);
+  return intersects;
 }

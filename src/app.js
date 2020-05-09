@@ -1,5 +1,5 @@
 import './state';
 import './control';
 import './scene';
-import './movement';
+import './move';
 import './shots';

@@ -5,22 +5,12 @@ window.state.scene = {
   tasks: [],
 };
 
-const { scene } = state;
+window.addEventListener('resize', setCenter);
+setCenter();
 
-setSceneCenter();
-window.addEventListener('resize', setSceneCenter);
-
-function setSceneCenter() {
+function setCenter() {
   const { clientWidth, clientHeight } = document.documentElement;
 
-  scene.center.x = Math.round(clientWidth / 2);
-  scene.center.y = Math.round(clientHeight / 2);
-}
-
-requestAnimationFrame(gameLoop);
-
-function gameLoop(time) {
-  requestAnimationFrame(gameLoop);
-
-  scene.tasks.forEach((task) => task(time));
+  state.scene.center.x = Math.round(clientWidth / 2);
+  state.scene.center.y = Math.round(clientHeight / 2);
 }

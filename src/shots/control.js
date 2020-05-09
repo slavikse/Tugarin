@@ -13,7 +13,7 @@ function handle({ code, isPressed }) {
     if (isPressed) {
       if (keyIndex === -1) {
         keysPressed.push(key);
-        shotAddCell(key);
+        addCell(key);
       }
     } else if (keyIndex > -1) {
       keysPressed.splice(keyIndex, 1);
@@ -21,8 +21,7 @@ function handle({ code, isPressed }) {
   }
 }
 
-// todo
-function shotAddCell(key) {
+function addCell(key) {
   state.shot.addCell({
     direction: key,
     playerSpeed: state.player.directionsSpeeds[key],

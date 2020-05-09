@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid';
-import { maxSpeed } from '../movement/const';
+import { maxSpeed } from '../move/const';
 import { movementInDirection } from '../utils';
 
 const type = 'shot';
@@ -10,26 +10,23 @@ window.state.shot = {
   cells: [],
 };
 
-// todo рефакторинг
-
 const { scene, player, shot } = state;
-const size = 10;
 
 // todo стрелять из блока оружия. т.е. координаты относительно этого самого блока.
 function createCell({ direction, playerSpeed }) {
   return {
     id: nanoid(),
     type,
-    x: scene.center.x + player.x + size,
-    y: scene.center.y + player.y + size,
+    x: scene.center.x + player.x + 15,
+    y: scene.center.y + player.y + 15,
     direction,
     playerSpeed,
-    size,
+    size: 10,
     color,
   };
 }
 
-// todo
+// todo рефакторинг ?
 scene.tasks.push(() => {
   shot.cells.forEach((cell, index, cells) => {
     const { clientWidth, clientHeight } = document.documentElement;

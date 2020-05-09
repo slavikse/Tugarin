@@ -1,7 +1,7 @@
 const $scene = document.querySelector('.scene');
 
-draw();
 window.addEventListener('resize', draw);
+draw();
 
 function draw() {
   setSceneSize();
