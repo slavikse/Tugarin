@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid';
 
-// todo rename. apple?
+// todo rename. щит?
 const type = 'cell';
 const color = '#040';
 

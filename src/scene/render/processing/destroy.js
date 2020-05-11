@@ -1,4 +1,4 @@
-export default function destroyCell(cell) {
+export default function destroy(cell) {
   const { cells } = state[cell.type];
   const index = cells.findIndex(({ id }) => id === cell.id);
 

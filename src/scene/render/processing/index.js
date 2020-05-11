@@ -1,22 +1,16 @@
-import cellsIntersections from './cellsIntersections';
-import destroyCell from './destroyCell';
-import addCellToPlayer from './addCellToPlayer';
-import stoppingPlayer from './stoppingPlayer';
+import intersections from './intersections';
+import destroy from './destroy';
+import addCell from './addCell';
+import stopping from './stopping';
 
 export default function processing() {
-  cellsIntersections().forEach(({ playerCell, cell }) => {
-    if (
-      cell.type === 'spike'
-    ) {
-      destroyCell(playerCell);
-    } else if (
-      cell.type === 'cell'
-    ) {
-      addCellToPlayer(cell);
-    } else if (
-      cell.type === 'wall'
-    ) {
-      stoppingPlayer(cell);
+  intersections().forEach(({ actor, cell }) => {
+    if (cell.type === 'spike') {
+      destroy(actor);
+    } else if (cell.type === 'cell') {
+      addCell(cell);
+    } else if (cell.type === 'wall') {
+      stopping(cell);
     }
   });
 }

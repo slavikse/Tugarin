@@ -2,16 +2,18 @@ import { nanoid } from 'nanoid';
 
 const mainColor = '#0f0';
 const color = '#050';
-const size = 40;
+const size = 30;
 
 window.state.player = {
   x: 0,
   y: 0,
+  size,
   isPlaying: false,
   keysPressed: [], // WASD
   directionsSpeeds: { W: 0, A: 0, S: 0, D: 0 },
   addCell(cell) { this.cells.push(createCell(cell)); },
   cells: [
+    // todo type main | gun
     { x: 0, y: 0, size, isMain: true },
     // { x: size, y: size, size },
     // { x: 0, y: size },
@@ -41,6 +43,7 @@ cells.forEach((cell, index) => {
 function createCell(cell) {
   cell.id = nanoid();
   cell.type = 'player';
+  // todo type
   cell.color = cell.isMain ? mainColor : color;
 
   return cell;

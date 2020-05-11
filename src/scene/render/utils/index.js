@@ -1,5 +1,14 @@
 import * as fps from './fps';
-import setDeltaTime from './setDeltaTime';
+import { getIntersection, getSideIntersection } from './getSideIntersection';
+import hasIntersected from './hasIntersected';
 import hasRestarted from './hasRestarted';
+import setDeltaTime from './setDeltaTime';
 
-export { fps, setDeltaTime, hasRestarted };
+export {
+  fps,
+  getIntersection,
+  getSideIntersection,
+  hasIntersected,
+  hasRestarted,
+  setDeltaTime,
+};
