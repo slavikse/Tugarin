@@ -5,7 +5,7 @@ import stopping from './stopping';
 
 const { player } = state;
 
-let previousIntersects = [];
+let prevIntersects = [];
 
 export default function processing() {
   const intersects = intersections();
@@ -21,8 +21,8 @@ export default function processing() {
       }
     });
 
-    if (previousIntersects.length > 0) {
-      const oldIntersects = previousIntersects.filter((prev) => !intersects
+    if (prevIntersects.length > 0) {
+      const oldIntersects = prevIntersects.filter((prev) => !intersects
         .find((next) => prev.id === next.id));
 
       if (oldIntersects) {
@@ -33,5 +33,5 @@ export default function processing() {
     state.player.intersection.sides = [];
   }
 
-  previousIntersects = intersects;
+  prevIntersects = intersects;
 }
