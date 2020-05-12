@@ -1,10 +1,16 @@
-import { basicSpeed } from './const';
+import { BASIC_SPEED } from './const';
 import { movementInDirection } from '../utils';
 
-const { player, player: { directionsSpeeds } } = state;
+const { player, player: { modifierKeys, directionsSpeeds } } = state;
 
 export default function decelerationSpeed({ key, value }) {
-  let result = value - (basicSpeed * 1.9);
+  let speed = BASIC_SPEED * 1.9;
+
+  if (modifierKeys.ShiftLeft) {
+    speed *= 2;
+  }
+
+  let result = value - speed;
 
   if (result < 0) {
     result = 0;

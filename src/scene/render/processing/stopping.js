@@ -1,14 +1,12 @@
-import { getIntersection, getSideIntersection } from '../utils';
+import { getIntersection, sidesIntersection } from '../utils';
 
-const { player } = state;
+const { player, player: { intersection } } = state;
 
-// todo с какой стороны замедлять скорость до 0?
-export default function stopping(cell) {
-  const { x, y } = getIntersection({ actor: player, cell });
-  const side = getSideIntersection({ x, y, actor: player, cell });
+export default function stopping({ actor, cell }) {
+  const { x, y } = getIntersection({ actor, cell });
+  sidesIntersection({ x, y, actor, cell });
 
-  if (side.length === 1) {
-    console.log(side, player.directionsSpeeds[side]);
+  intersection.sides.forEach((side) => {
     player.directionsSpeeds[side] = 0;
-  }
+  });
 }

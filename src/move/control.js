@@ -2,7 +2,7 @@ window.addEventListener('keydown', ({ code }) => handle({ code, isPressed: true 
 window.addEventListener('keyup', ({ code }) => handle({ code, isPressed: false }));
 
 const keys = { KeyW: 'W', KeyA: 'A', KeyS: 'S', KeyD: 'D' };
-const { player: { keysPressed } } = state;
+const { player: { keysPressed, modifierKeys } } = state;
 
 function handle({ code, isPressed }) {
   const key = keys[code];
@@ -17,5 +17,9 @@ function handle({ code, isPressed }) {
     } else if (keyIndex > -1) {
       keysPressed.splice(keyIndex, 1);
     }
+  }
+
+  if (modifierKeys[code] !== undefined) {
+    modifierKeys[code] = isPressed;
   }
 }

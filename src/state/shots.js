@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid';
-import { maxSpeed } from '../move/const';
+import { MAX_SPEED } from '../move/const';
 import { movementInDirection } from '../utils';
 
 const type = 'shot';
@@ -45,7 +45,7 @@ scene.tasks.push(() => {
 
     movementInDirection[direction]({
       actor: cell,
-      value: playerSpeed + maxSpeed * 1.2,
+      value: playerSpeed + MAX_SPEED * 1.2,
     });
   });
 });

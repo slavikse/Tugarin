@@ -7,7 +7,7 @@ export default function assignAcceleration() {
   Object.entries(directionsSpeeds).forEach(([key, value]) => {
     if (keysPressed.indexOf(key) > -1) {
       movementInDirection[key]({ actor: player, value });
-    } else {
+    } else if (value > 0) {
       decelerationSpeed({ key, value });
     }
   });

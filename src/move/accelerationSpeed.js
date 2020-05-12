@@ -1,34 +1,40 @@
-import { basicSpeed, maxSpeed } from './const';
+import { BASIC_SPEED, MAX_SPEED } from './const';
 
-const { player: { keysPressed, directionsSpeeds } } = state;
+const { player: { keysPressed, modifierKeys, intersection, directionsSpeeds } } = state;
 
 export default function accelerationSpeed() {
-  let copiedMaxSpeed = maxSpeed;
+  let maxSpeed = MAX_SPEED;
 
   if (keysPressed.length === 2) {
-    copiedMaxSpeed *= 0.85;
+    maxSpeed *= 0.85;
+  }
+
+  if (modifierKeys.ShiftLeft) {
+    maxSpeed *= 0.5;
   }
 
   keysPressed.forEach((key) => {
-    initialAcceleration(key);
-    increaseSpeed({ key, copiedMaxSpeed });
+    if (!intersection.sides.includes(key)) {
+      initialAcceleration(key);
+      increaseSpeed({ key, maxSpeed });
+    }
   });
 }
 
 function initialAcceleration(key) {
   if (directionsSpeeds[key] === 0) {
-    directionsSpeeds[key] = basicSpeed * 5;
+    directionsSpeeds[key] = BASIC_SPEED * 7;
   }
 }
 
-function increaseSpeed({ key, copiedMaxSpeed }) {
+function increaseSpeed({ key, maxSpeed }) {
   const directionSpeed = directionsSpeeds[key];
 
-  if (directionSpeed < copiedMaxSpeed) {
-    directionsSpeeds[key] += basicSpeed;
+  if (directionSpeed < maxSpeed) {
+    directionsSpeeds[key] += BASIC_SPEED;
   }
 
-  if (directionsSpeeds[key] > copiedMaxSpeed) {
-    directionsSpeeds[key] = copiedMaxSpeed;
+  if (directionsSpeeds[key] > maxSpeed) {
+    directionsSpeeds[key] = maxSpeed;
   }
 }
