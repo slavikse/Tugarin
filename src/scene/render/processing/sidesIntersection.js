@@ -23,15 +23,13 @@ function hasAxis({ axis, actor, cell }) {
   return axis >= -actor.size && axis <= cell.size;
 }
 
-const deviation = 4;
+const deviation = 5;
 
 function W({ isAxisX, y, cell }) {
   const indexW = intersection.sides.indexOf('W');
 
   if (isAxisX && indexW === -1 && y >= cell.size - deviation && y <= cell.size) {
     intersection.sides.push('W');
-  } else if (!isAxisX && indexW > -1) {
-    intersection.sides.splice(indexW, 1);
   }
 }
 
@@ -40,8 +38,6 @@ function S({ isAxisX, y, actor }) {
 
   if (isAxisX && indexS === -1 && y >= -actor.size && y <= -actor.size + deviation) {
     intersection.sides.push('S');
-  } else if (!isAxisX && indexS > -1) {
-    intersection.sides.splice(indexS, 1);
   }
 }
 
@@ -50,8 +46,6 @@ function A({ isAxisY, x, cell }) {
 
   if (isAxisY && indexA === -1 && x >= cell.size - deviation && x <= cell.size) {
     intersection.sides.push('A');
-  } else if (!isAxisY && indexA > -1) {
-    intersection.sides.splice(indexA, 1);
   }
 }
 
@@ -60,7 +54,5 @@ function D({ isAxisY, x, actor }) {
 
   if (isAxisY && indexD === -1 && x >= -actor.size && x <= -actor.size + deviation) {
     intersection.sides.push('D');
-  } else if (!isAxisY && indexD > -1) {
-    intersection.sides.splice(indexD, 1);
   }
 }

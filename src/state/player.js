@@ -12,7 +12,7 @@ window.state.player = {
   keysPressed: [], // WASD
   modifierKeys: { ShiftLeft: false },
   directionsSpeeds: { W: 0, A: 0, S: 0, D: 0 },
-  intersection: { sides: [] },
+  intersection: { sides: [] }, // WASD
   addCell(cell) { this.cells.push(createCell(cell)); },
   cells: [
     // todo type main | gun

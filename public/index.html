@@ -72,7 +72,7 @@ body {
   margin-top: 10px;
 }
 
-.fps {
+.frame-time {
   position: absolute;
   top: 0;
   right: 0;
@@ -107,9 +107,11 @@ body {
   </div>
 </div>
 
-<div class="fps js-fps">
-  <div>к/с <span class="js-fps">000</span></div>
-  <div>за <span class="js-time">0.00</span></div>
+<div
+  class="frame-time js-frame-time"
+  hidden
+>
+  <div>за <span class="js-frame-time-count">0.00</span></div>
 </div>
 </body>
 </html>

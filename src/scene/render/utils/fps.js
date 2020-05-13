@@ -1,23 +1,13 @@
-const $fps = document.querySelector('.js-fps');
+const $frameTime = document.querySelector('.js-frame-time');
 
 window.addEventListener('keydown', ({ code }) => {
   if (code === 'F1') {
-    $fps.hidden = !$fps.hidden;
+    $frameTime.hidden = !$frameTime.hidden;
   }
 });
 
-const measure = {
-  $fpsCounter: document.querySelector('.fps .js-fps'),
-  previousTime: 0,
-
-  count(time) {
-    this.$fpsCounter.textContent = String(Math.round(1000 / (time - this.previousTime)));
-    this.previousTime = time;
-  },
-};
-
 const execution = {
-  $fpsExecutionTime: document.querySelector('.fps .js-time'),
+  $frameTimeCount: $frameTime.querySelector('.js-frame-time-count'),
   executionTime: 0,
 
   start() {
@@ -25,8 +15,8 @@ const execution = {
   },
 
   end() {
-    this.$fpsExecutionTime.textContent = String((performance.now() - this.executionTime).toFixed(2));
+    this.$frameTimeCount.textContent = String((performance.now() - this.executionTime).toFixed(2));
   },
 };
 
-export { measure, execution };
+export { execution };

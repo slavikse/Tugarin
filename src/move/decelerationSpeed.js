@@ -4,7 +4,7 @@ import { movementInDirection } from '../utils';
 const { player, player: { modifierKeys, directionsSpeeds } } = state;
 
 export default function decelerationSpeed({ side, speed }) {
-  let basicSpeed = BASIC_SPEED * 1.9;
+  let basicSpeed = BASIC_SPEED * 2;
 
   if (modifierKeys.ShiftLeft) {
     basicSpeed *= 2;

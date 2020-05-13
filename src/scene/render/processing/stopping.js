@@ -1,12 +1,12 @@
 import { getIntersection, sidesIntersection } from './sidesIntersection';
 
-const { player, player: { intersection } } = state;
+const { player } = state;
 
 export default function stopping({ actor, cell }) {
   const { x, y } = getIntersection({ actor, cell });
   sidesIntersection({ x, y, actor, cell });
 
-  intersection.sides.forEach((side) => {
+  player.intersection.sides.forEach((side) => {
     player.directionsSpeeds[side] = 0;
   });
 }

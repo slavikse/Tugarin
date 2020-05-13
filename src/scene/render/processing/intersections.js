@@ -15,11 +15,7 @@ export default function intersections() {
       const isIntersect = hasIntersected({ actor: player, cell });
 
       if (isIntersect) {
-        intersects.push({
-          id: cell.id,
-          actor: player,
-          cell,
-        });
+        intersects.push({ actor: player, cell });
       }
     });
   });

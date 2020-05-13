@@ -1,28 +1,19 @@
 import './create';
 import './render';
 
-// import * as tf from '@tensorflow/tfjs';
-//
-// // Define a model for linear regression.
-// const model = tf.sequential();
-// model.add(tf.layers.dense({ units: 1, inputShape: [1] }));
-//
-// // Prepare the model for training: Specify the loss and the optimizer.
-// model.compile({ loss: 'meanSquaredError', optimizer: 'sgd' });
-//
-// // Generate some synthetic data for training.
-// const xs = tf.tensor2d([1, 2, 3, 4], [4, 1]);
-// const ys = tf.tensor2d([1, 3, 5, 7], [4, 1]);
-//
-// // Train the model using the data.
-// model.fit(xs, ys).then(() => {
-//   // Use the model to do inference on a data point the model hasn't seen before:
-//   model.predict(tf.tensor2d([5], [1, 1])).print();
-// });
+let previousTime = performance.now();
+setTimeout(gameLoop, 5);
 
-requestAnimationFrame(gameLoop);
+function gameLoop() {
+  setTimeout(gameLoop, 5);
 
-function gameLoop(time) {
-  requestAnimationFrame(gameLoop);
-  state.scene.tasks.forEach((task) => task(time));
+  const time = performance.now();
+  const deltaTime = (time - previousTime) / 1000;
+  previousTime = time;
+
+  state.scene.deltaTime = deltaTime;
+  state.scene.tasks.forEach((task) => task());
 }
+
+// todo можно ли рисовать и просчитывать в разных циклах???
+// для отрисовки rAF. для физики setTimeout
