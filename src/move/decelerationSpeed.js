@@ -3,19 +3,19 @@ import { movementInDirection } from '../utils';
 
 const { player, player: { modifierKeys, directionsSpeeds } } = state;
 
-export default function decelerationSpeed({ key, value }) {
-  let speed = BASIC_SPEED * 1.9;
+export default function decelerationSpeed({ side, speed }) {
+  let basicSpeed = BASIC_SPEED * 1.9;
 
   if (modifierKeys.ShiftLeft) {
-    speed *= 2;
+    basicSpeed *= 2;
   }
 
-  let result = value - speed;
+  let speedResult = speed - basicSpeed;
 
-  if (result < 0) {
-    result = 0;
+  if (speedResult < 0) {
+    speedResult = 0;
   }
 
-  directionsSpeeds[key] = result;
-  movementInDirection[key]({ actor: player, value: result });
+  directionsSpeeds[side] = speedResult;
+  movementInDirection[side]({ actor: player, speed: speedResult });
 }

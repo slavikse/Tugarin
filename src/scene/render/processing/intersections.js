@@ -1,4 +1,4 @@
-import { hasIntersected } from '../utils';
+import hasIntersected from './hasIntersected';
 
 const cells = [].concat(
   state.wall.cells,

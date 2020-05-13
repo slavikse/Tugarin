@@ -1,4 +1,4 @@
-import { getIntersection, sidesIntersection } from '../utils';
+import { getIntersection, sidesIntersection } from './sidesIntersection';
 
 const { player, player: { intersection } } = state;
 

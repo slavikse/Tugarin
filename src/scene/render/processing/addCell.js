@@ -1,5 +1,5 @@
 import destroy from './destroy';
-import { getIntersection } from '../utils';
+import { getIntersection } from './sidesIntersection';
 
 const { player } = state;
 

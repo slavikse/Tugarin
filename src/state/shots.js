@@ -45,7 +45,7 @@ scene.tasks.push(() => {
 
     movementInDirection[direction]({
       actor: cell,
-      value: playerSpeed + MAX_SPEED * 1.2,
+      speed: playerSpeed + MAX_SPEED * 1.2,
     });
   });
 });
