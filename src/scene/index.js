@@ -1,19 +1,28 @@
 import './create';
 import './render';
+import { fps } from './render/utils';
 
-let previousTime = performance.now();
-setTimeout(gameLoop, 5);
+const fpsInterval = 1000 / 200;
+let previousTimestamp = 0;
 
-function gameLoop() {
-  setTimeout(gameLoop, 5);
+setTimeout(frame, fpsInterval);
 
-  const time = performance.now();
-  const deltaTime = (time - previousTime) / 1000;
-  previousTime = time;
+function frame() {
+  const timestamp = performance.now();
 
+  requestAnimationFrame(() => {
+    const deltaTime = (timestamp - previousTimestamp) / 1000;
+    previousTimestamp = timestamp;
+
+    fps.execution.start();
+    gameLoop(deltaTime);
+    const executionTime = fps.execution.end();
+
+    setTimeout(frame, fpsInterval - (executionTime + deltaTime));
+  });
+}
+
+function gameLoop(deltaTime) {
   state.scene.deltaTime = deltaTime;
   state.scene.tasks.forEach((task) => task());
 }
-
-// todo можно ли рисовать и просчитывать в разных циклах???
-// для отрисовки rAF. для физики setTimeout

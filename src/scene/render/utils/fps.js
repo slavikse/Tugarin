@@ -8,14 +8,17 @@ window.addEventListener('keydown', ({ code }) => {
 
 const execution = {
   $frameTimeCount: $frameTime.querySelector('.js-frame-time-count'),
-  executionTime: 0,
+  startFrameTime: 0,
 
   start() {
-    this.executionTime = performance.now();
+    this.startFrameTime = performance.now();
   },
 
   end() {
-    this.$frameTimeCount.textContent = String((performance.now() - this.executionTime).toFixed(2));
+    const endFrameTime = performance.now() - this.startFrameTime;
+    this.$frameTimeCount.textContent = String(endFrameTime.toFixed(2));
+
+    return endFrameTime;
   },
 };
 
