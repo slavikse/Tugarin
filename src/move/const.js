@@ -1,2 +1,2 @@
-export const BASIC_SPEED = 40;
-export const MAX_SPEED = BASIC_SPEED * 20;
+export const BASIC_SPEED = 25;
+export const MAX_SPEED = BASIC_SPEED * 15;

@@ -6,7 +6,7 @@ window.state.spike = {
 
 const size = 20;
 
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 100; i++) {
   state.spike.cells.push({
     id: nanoid(),
     x: Math.round(i * 50 * Math.random()) + 1000,

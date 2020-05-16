@@ -3,25 +3,48 @@ import { MAX_SPEED } from '../move/const';
 import { movement } from '../utils';
 
 window.state.shot = {
-  addCell(side) { this.cells.push(createCell(side)); },
+  addCell(side) { this.cells.push(...createCell(side)); },
   cells: [],
 };
 
 const { scene, player, shot } = state;
 
-// todo стрелять из блока оружия. т.е. координаты относительно этого самого блока.
 function createCell(side) {
-  return {
-    id: nanoid(),
-    type: 'shot',
-    x: scene.center.x + player.x + 15,
-    y: scene.center.y + player.y + 15,
-    width: 10,
-    height: 10,
-    side,
-    speed: player.directionsSpeeds[side],
-    color: '#ff0',
-  };
+  return player.guns.filter((gun) => gun.side === side).map((gun) => {
+    const width = 10;
+    const height = 10;
+
+    const cell = {
+      id: nanoid(),
+      type: 'shot',
+      x: 0,
+      y: 0,
+      width,
+      height,
+      side,
+      speed: player.directionsSpeeds[side],
+      color: '#ff0',
+    };
+
+    const x = scene.center.x + player.x - gun.x;
+    const y = scene.center.y + player.y - gun.y;
+
+    if (side === 'W') {
+      cell.x = x + width / 2;
+      cell.y = y;
+    } else if (side === 'D') {
+      cell.x = x;
+      cell.y = y + height / 2;
+    } else if (side === 'S') {
+      cell.x = x + width / 2;
+      cell.y = y;
+    } else if (side === 'A') {
+      cell.x = x;
+      cell.y = y + height / 2;
+    }
+
+    return cell;
+  });
 }
 
 // todo рефакторинг ?
