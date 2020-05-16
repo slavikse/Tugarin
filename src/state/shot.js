@@ -1,28 +1,26 @@
 import { nanoid } from 'nanoid';
 import { MAX_SPEED } from '../move/const';
-import { movementInDirection } from '../utils';
-
-const type = 'shot';
-const color = '#ff0';
+import { movement } from '../utils';
 
 window.state.shot = {
-  addCell({ direction, playerSpeed }) { this.cells.push(createCell({ direction, playerSpeed })); },
+  addCell(side) { this.cells.push(createCell(side)); },
   cells: [],
 };
 
 const { scene, player, shot } = state;
 
 // todo стрелять из блока оружия. т.е. координаты относительно этого самого блока.
-function createCell({ direction, playerSpeed }) {
+function createCell(side) {
   return {
     id: nanoid(),
-    type,
+    type: 'shot',
     x: scene.center.x + player.x + 15,
     y: scene.center.y + player.y + 15,
-    direction,
-    playerSpeed,
-    size: 10,
-    color,
+    width: 10,
+    height: 10,
+    side,
+    speed: player.directionsSpeeds[side],
+    color: '#ff0',
   };
 }
 
@@ -41,11 +39,11 @@ scene.tasks.push(() => {
       return;
     }
 
-    const { direction, playerSpeed } = cell;
+    const { side, speed } = cell;
 
-    movementInDirection[direction]({
+    movement[side]({
       actor: cell,
-      speed: playerSpeed + MAX_SPEED * 1.2,
+      speed: speed + MAX_SPEED * 1.5,
     });
   });
 });

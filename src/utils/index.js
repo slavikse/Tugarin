@@ -1,3 +1,3 @@
-import movementInDirection from './movementInDirection';
+import movement from './movement';
 
-export { movementInDirection };
+export { movement };

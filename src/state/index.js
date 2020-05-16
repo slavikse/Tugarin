@@ -1,8 +1,8 @@
 import './common';
 import './scene';
 import './player';
-import './shots';
-import './enemy';
+import './gun';
+import './shot';
 import './wall';
+import './enemy';
 import './spike';
-import './cell';

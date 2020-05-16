@@ -13,9 +13,11 @@ function setSceneSize() {
 
   $scene.width = clientWidth;
   $scene.height = clientHeight;
+
+  $scene.focus();
 }
 
 function configureContext() {
-  state.ctx = $scene.getContext('2d', { alpha: false });
-  state.ctx.imageSmoothingEnabled = false;
+  state.ctx = $scene.getContext('2d', { alpha: true });
+  state.ctx.imageSmoothingEnabled = true;
 }

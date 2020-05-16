@@ -14,7 +14,7 @@ const environment = 'development';
 async function ready() {
   disableBrowserHotKeys();
 
-  const mainWindow = new BrowserWindow({
+  const config = {
     x: 0,
     y: 0,
     frame: false,
@@ -24,7 +24,13 @@ async function ready() {
     webPreferences: {
       nodeIntegration: true,
     },
-  });
+  };
+
+  if (environment !== 'production') {
+    config.frame = true;
+  }
+
+  const mainWindow = new BrowserWindow(config);
 
   if (environment !== 'production') {
     mainWindow.webContents.openDevTools();

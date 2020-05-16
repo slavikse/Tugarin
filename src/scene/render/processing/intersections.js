@@ -1,21 +1,22 @@
 import hasIntersected from './hasIntersected';
 
-const cells = [].concat(
+const otherCells = [].concat(
+  state.gun.cells,
   state.wall.cells,
   state.spike.cells,
-  state.cell.cells,
 );
 
 export default function intersections() {
   const intersects = [];
 
-  // todo пересечения только для игрока. враги тоже захотят
-  state.player.cells.forEach((player) => {
-    cells.forEach((cell) => {
-      const isIntersect = hasIntersected({ actor: player, cell });
+  // todo пересечение других активных акторов
+  Object.entries(state.player.cells).forEach(([side, actorCell]) => {
+    otherCells.forEach((otherCell) => {
+      const data = { actor: state.player, side, actorCell, otherCell };
+      const isIntersect = hasIntersected(data);
 
       if (isIntersect) {
-        intersects.push({ actor: player, cell });
+        intersects.push(data);
       }
     });
   });

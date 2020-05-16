@@ -1,40 +1,47 @@
 import { BASIC_SPEED, MAX_SPEED } from './const';
 
-const { player: { modifierKeys, keysPressed, intersection, directionsSpeeds } } = state;
+const { player } = state;
+
+const accelerationObliquely = 0.7;
+const slowAcceleration = 0.5;
+const basicAcceleration = 5;
 
 export default function accelerationSpeed() {
+  let basicSpeed = BASIC_SPEED;
   let maxSpeed = MAX_SPEED;
 
-  if (modifierKeys.ShiftLeft) {
-    maxSpeed *= 0.5;
+  if (player.numberSidesPressed === 2) {
+    basicSpeed *= accelerationObliquely;
+    maxSpeed *= accelerationObliquely;
   }
 
-  if (keysPressed.length === 2) {
-    maxSpeed *= 0.85;
+  if (player.modifierKeys.ShiftLeft) {
+    basicSpeed *= slowAcceleration;
+    maxSpeed *= slowAcceleration;
   }
 
-  keysPressed.forEach((key) => {
-    if (!intersection.sides.includes(key)) {
-      initialAcceleration(key);
-      increaseSpeed({ key, maxSpeed });
+  Object.entries(player.sidesPressed).forEach(([side, isPressed]) => {
+    if (isPressed && !player.intersectionSides[side]) {
+      acceleration({ side, basicSpeed });
+      increaseSpeed({ side, basicSpeed, maxSpeed });
     }
   });
 }
 
-function initialAcceleration(key) {
-  if (directionsSpeeds[key] === 0) {
-    directionsSpeeds[key] = BASIC_SPEED * 15;
+function acceleration({ side, basicSpeed }) {
+  if (player.directionsSpeeds[side] === 0) {
+    player.directionsSpeeds[side] = basicSpeed * basicAcceleration;
   }
 }
 
-function increaseSpeed({ key, maxSpeed }) {
-  const directionSpeed = directionsSpeeds[key];
+function increaseSpeed({ side, basicSpeed, maxSpeed }) {
+  const directionSpeed = player.directionsSpeeds[side];
 
   if (directionSpeed < maxSpeed) {
-    directionsSpeeds[key] += BASIC_SPEED;
+    player.directionsSpeeds[side] += basicSpeed;
   }
 
-  if (directionsSpeeds[key] > maxSpeed) {
-    directionsSpeeds[key] = maxSpeed;
+  if (player.directionsSpeeds[side] > maxSpeed) {
+    player.directionsSpeeds[side] = maxSpeed;
   }
 }

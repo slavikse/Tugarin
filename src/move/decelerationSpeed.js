@@ -1,21 +1,24 @@
 import { BASIC_SPEED } from './const';
-import { movementInDirection } from '../utils';
+import { movement } from '../utils';
 
-const { player, player: { modifierKeys, directionsSpeeds } } = state;
+const { player } = state;
+
+const deceleration = 2;
+const fastDeceleration = 1.5;
 
 export default function decelerationSpeed({ side, speed }) {
-  let basicSpeed = BASIC_SPEED * 10;
+  let basicSpeed = BASIC_SPEED * deceleration;
 
-  if (modifierKeys.ShiftLeft) {
-    basicSpeed *= 2;
+  if (player.modifierKeys.ShiftLeft) {
+    basicSpeed *= fastDeceleration;
   }
 
-  let speedResult = speed - basicSpeed;
+  let speedSlowed = speed - basicSpeed;
 
-  if (speedResult < 0) {
-    speedResult = 0;
+  if (speedSlowed < 0) {
+    speedSlowed = 0;
   }
 
-  directionsSpeeds[side] = speedResult;
-  movementInDirection[side]({ actor: player, speed: speedResult });
+  player.directionsSpeeds[side] = speedSlowed;
+  movement[side]({ actor: player, speed: speedSlowed });
 }

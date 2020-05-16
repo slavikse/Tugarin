@@ -1,15 +1,12 @@
 import destroy from './destroy';
-import { getIntersection } from './sidesIntersection';
+import { getDotIntersection } from './utils';
 
-const { player } = state;
+export default function addCell({ actor, side, otherCell }) {
+  destroy(otherCell);
 
-export default function addCell(cell) {
-  destroy(cell);
+  const { x, y } = getDotIntersection({ actor, otherCell });
+  otherCell.x = x;
+  otherCell.y = y;
 
-  const { x, y } = getIntersection({ actor: player, cell });
-
-  cell.x = x;
-  cell.y = y;
-
-  player.addCell(cell);
+  actor.addCell({ type: 'guns', side, otherCell });
 }

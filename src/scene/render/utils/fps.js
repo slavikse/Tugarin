@@ -1,4 +1,5 @@
 const $frameTime = document.querySelector('.js-frame-time');
+const $fps = document.querySelector('.js-fps');
 
 window.addEventListener('keydown', ({ code }) => {
   if (code === 'F1') {
@@ -8,18 +9,24 @@ window.addEventListener('keydown', ({ code }) => {
 
 const execution = {
   $frameTimeCount: $frameTime.querySelector('.js-frame-time-count'),
-  startFrameTime: 0,
+  prevTimestamp: 0,
 
-  start() {
-    this.startFrameTime = performance.now();
+  start(timestamp) {
+    this.prevTimestamp = timestamp;
   },
 
-  end() {
-    const endFrameTime = performance.now() - this.startFrameTime;
-    this.$frameTimeCount.textContent = String(endFrameTime.toFixed(2));
-
-    return endFrameTime;
+  end(timestamp) {
+    this.$frameTimeCount.textContent = String((timestamp - this.prevTimestamp).toFixed(2));
   },
 };
 
-export { execution };
+let prevTimestamp = 0;
+
+function count(timestamp) {
+  const fps = 1000 / (timestamp - prevTimestamp);
+  prevTimestamp = timestamp;
+
+  $fps.textContent = String(Math.round(fps));
+}
+
+export { execution, count };
