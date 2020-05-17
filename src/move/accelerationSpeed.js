@@ -2,7 +2,7 @@ import { BASIC_SPEED, MAX_SPEED } from './const';
 
 const { player } = state;
 
-const accelerationObliquely = 0.7;
+const accelerationObliquely = 0.8;
 const slowAcceleration = 0.5;
 const basicAcceleration = 5;
 

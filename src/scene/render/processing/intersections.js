@@ -19,6 +19,12 @@ export default function intersections() {
         intersects.push(data);
       }
     });
+
+    // todo
+    // state.player.guns.forEach((gun) => {
+    //   const i = hasIntersected({ actor: state.player, actorCell: gun, otherCell });
+    //   console.log(i);
+    // });
   });
 
   return intersects;

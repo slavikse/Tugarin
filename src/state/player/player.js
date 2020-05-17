@@ -5,10 +5,10 @@ const kernelWidth = 30;
 const kernelHeight = 30;
 const kernelColor = '#050';
 
-const shieldWidth = 5;
-const shieldHeight = 5;
+const shieldWidth = 3;
+const shieldHeight = 3;
 const shieldOffset = 0;
-const shieldColor = '#0f0'; // todo transparent
+const shieldColor = '#0f0';
 
 window.state.player = {
   x: -1,

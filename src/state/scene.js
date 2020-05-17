@@ -1,8 +1,8 @@
 window.state.scene = {
   center: { x: 0, y: 0 },
   deltaTime: performance.now(),
-  color: '#000',
   tasks: [],
+  color: '#000',
 };
 
 window.addEventListener('resize', setCenter);

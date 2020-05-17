@@ -3,51 +3,50 @@ import { MAX_SPEED } from '../move/const';
 import { movement } from '../utils';
 
 window.state.shot = {
-  addCell(side) { this.cells.push(...createCell(side)); },
+  addCell(side) { this.cells.push(...addCell(side)); },
   cells: [],
 };
 
 const { scene, player, shot } = state;
 
-function createCell(side) {
+const width = 10;
+const height = 10;
+
+function addCell(side) {
   return player.guns.filter((gun) => gun.side === side).map((gun) => {
-    const width = 10;
-    const height = 10;
-
-    const cell = {
-      id: nanoid(),
-      type: 'shot',
-      x: 0,
-      y: 0,
-      width,
-      height,
-      side,
-      speed: player.directionsSpeeds[side],
-      color: '#ff0',
-    };
-
-    const x = scene.center.x + player.x - gun.x;
-    const y = scene.center.y + player.y - gun.y;
+    const cell = createCell({ side, gun });
 
     if (side === 'W') {
-      cell.x = x + width / 2;
-      cell.y = y;
+      cell.x += width / 2;
     } else if (side === 'D') {
-      cell.x = x;
-      cell.y = y + height / 2;
+      cell.y += height / 2;
     } else if (side === 'S') {
-      cell.x = x + width / 2;
-      cell.y = y;
+      cell.x += width / 2;
     } else if (side === 'A') {
-      cell.x = x;
-      cell.y = y + height / 2;
+      cell.y += height / 2;
     }
 
     return cell;
   });
 }
 
-// todo рефакторинг ?
+function createCell({ side, gun }) {
+  const x = scene.center.x + player.x - gun.x;
+  const y = scene.center.y + player.y - gun.y;
+
+  return {
+    id: nanoid(),
+    type: 'shot',
+    x,
+    y,
+    width,
+    height,
+    side,
+    speed: player.directionsSpeeds[side],
+    color: '#ff0',
+  };
+}
+
 scene.tasks.push(() => {
   shot.cells.forEach((cell, index, cells) => {
     const { clientWidth, clientHeight } = document.documentElement;
