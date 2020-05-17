@@ -1,5 +1,8 @@
 # Tugarin
 
+### Релиз v0.1
+https://github.com/slavikse/tugarin/releases
+
 ## Команды
 * Запуск: `npm run serve`
 * Сборка: `npm run build`
